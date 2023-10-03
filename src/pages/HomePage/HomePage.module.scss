@@ -1,52 +1,57 @@
 .page {
 	display: flex;
 	flex-direction: column;
-	align-items: center;
 	width: 100%;
 
 	.banner {
+		position: relative;
 		display: flex;
-		flex-direction: column;
 		align-items: center;
 		justify-content: center;
-		position: absolute;
-		overflow: hidden;
-		width: 100%;
+		gap: 20px;
+
+		img {
+			width: 100%;
+			border-radius: var(--rad);
+		}
 
 		h1 {
 			position: absolute;
 			z-index: 1;
-			font-size: var(--fs-hg);
+			padding: 20px;
+			font-size: var(--fs-bg);
 			color: var(--colors-text-secondary);
 			font-weight: var(--fw-b);
-			text-align: center;
 		}
+	}
 
-		img {
-			object-fit: contain;
-			filter: brightness(0.8);
-			height: 650px;
+	.coursesBackground {
+		width: 100%;
+		background: var(--colors-gradient-primary);
+
+		.courses {
+			margin-top: 10px;
+			margin-bottom: 10px;
+			display: grid;
+			grid-template-columns: 1fr 1fr 1fr 1fr;
+			gap: 20px;
 		}
 	}
 
 	@media (max-width: 768px) {
 		.banner {
+			margin-top: 30px;
 			h1 {
 				font-size: var(--fs-bg);
-			}
-			img {
-				height: 500px;
 			}
 		}
 	}
 
 	@media (max-width: 480px) {
 		.banner {
+			margin-top: 10px;
 			h1 {
 				font-size: var(--fs-md);
-			}
-			img {
-				height: 300px;
 			}
 		}
 	}

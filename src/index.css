@@ -18,11 +18,12 @@
 	--fs-md: 22px;
 	--fs-bg: 36px;
 	--fs-hg: 72px;
+	--colors-shadow: #00000060;
 }
 
 body[data-theme="light"] {
 	--colors-primary: #ffffff;
-	--colors-secondary: #f2f2f2;
+	--colors-secondary: #e4e4e4;
 	--colors-gradient-primary: linear-gradient(
 		140deg,
 		rgba(143, 255, 184, 1) 0%,
@@ -53,6 +54,6 @@ body[data-theme="dark"] {
 }
 
 body {
-	background: var(--colors-gradient-primary);
+	background: var(--colors-primary);
 	font-family: "Raleway", sans-serif;
 }

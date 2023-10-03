@@ -1,3 +1,7 @@
+* {
+	text-decoration: none;
+}
+
 .button {
 	display: flex;
 	align-items: center;
@@ -18,6 +22,7 @@
 	:nth-child(n) {
 		width: 25px;
 		height: 25px;
+		text-decoration: none;
 	}
 }
 

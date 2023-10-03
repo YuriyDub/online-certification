@@ -1,0 +1,18 @@
+.divider {
+	display: block;
+	border: none;
+}
+
+.horizontal {
+	margin: 10px 0px;
+	height: 1px;
+	border-top: 2px dashed var(--colors-line);
+}
+
+.vertical {
+	display: block;
+	margin: 0px 10px;
+	width: 1px;
+	height: 100%;
+	border-right: 2px dashed var(--colors-line);
+}

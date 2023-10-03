@@ -1,13 +1,58 @@
-body {
-  margin: 0;
-  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+@import "reset.css";
+
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+:root {
+	--container-max-width: 1280px;
+	--rad: 30px;
+	--fw-th: 100;
+	--fw-exl: 200;
+	--fw-l: 300;
+	--fw-r: 400;
+	--fw-md: 500;
+	--fw-sb: 600;
+	--fw-b: 700;
+	--fw-exb: 800;
+	--fw-bl: 900;
+	--fs-sm: 14px;
+	--fs-md: 22px;
+	--fs-bg: 36px;
+	--fs-hg: 72px;
 }
 
-code {
-  font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+body[data-theme="light"] {
+	--colors-primary: #ffffff;
+	--colors-secondary: #f2f2f2;
+	--colors-gradient-primary: linear-gradient(
+		140deg,
+		rgba(143, 255, 184, 1) 0%,
+		rgba(13, 208, 215, 1) 59%,
+		rgba(0, 212, 255, 1) 100%
+	);
+	--colors-line: #d4d4d4;
+	--colors-text-primary: #000000;
+	--colors-text-secondary: #fff;
+	--opacity-button-highlight: 0.8;
+	--opacity-button-click: 0.5;
+}
+
+body[data-theme="dark"] {
+	--colors-primary: #000000;
+	--colors-secondary: #2c2c2f;
+	--colors-gradient-primary: linear-gradient(
+		140deg,
+		rgba(143, 255, 184, 1) 0%,
+		rgba(13, 208, 215, 1) 59%,
+		rgba(0, 212, 255, 1) 100%
+	);
+	--colors-line: #fff;
+	--colors-text-primary: #fff;
+	--colors-text-secondary: #000000;
+	--opacity-button-highlight: 0.8;
+	--opacity-button-click: 0.5;
+}
+
+body {
+	background: var(--colors-gradient-primary);
+	font-family: "Raleway", sans-serif;
 }

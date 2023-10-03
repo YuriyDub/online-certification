@@ -1,0 +1,24 @@
+.frame {
+	display: flex;
+	align-items: center;
+	background-color: var(--colors-primary);
+	border-radius: var(--rad);
+	height: 40px;
+	max-width: 480px;
+	flex-grow: 1;
+	
+	input {
+		padding: 0px 10px 0px 10px;
+		margin: 0 5px 0 20px;
+		height: 30px;
+		border: 0;
+		flex-grow: 1;
+		border-radius: var(--rad);
+		background-color: var(--colors-secondary);
+		font-weight: var(--fw-md);
+
+		&:focus {
+			outline: none;
+		}
+	}
+}

@@ -1,0 +1,75 @@
+.button {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	background-color: inherit;
+	height: 40px;
+	border-radius: 100;
+	padding: 0 10px 0px 10px;
+	gap: 6px;
+	border-radius: var(--rad);
+	color: var(--colors-text-primary);
+	font-weight: var(--fw-sb);
+	font-size: var(--var-sm);
+	text-wrap: nowrap;
+	transition: all 0.1s ease-in-out;
+	cursor: pointer;
+
+	:nth-child(n) {
+		width: 25px;
+		height: 25px;
+	}
+}
+
+.default {
+	color: var(--colors-text-primary);
+
+	:nth-child(n) {
+		fill: var(--colors-text-primary);
+	}
+
+	&:hover {
+		background-color: var(--colors-text-secondary);
+		opacity: var(--opacity-button-highlight);
+	}
+
+	&:active {
+		background-color: var(--colors-text-secondary);
+		opacity: var(--opacity-button-click);
+	}
+}
+
+.inverse {
+	color: var(--colors-text-secondary);
+
+	:nth-child(n) {
+		fill: var(--colors-text-secondary);
+	}
+
+	&:hover {
+		background-color: var(--colors-text-primary);
+		opacity: var(--opacity-button-highlight);
+	}
+
+	&:active {
+		background-color: var(--colors-text-primary);
+		opacity: var(--opacity-button-click);
+	}
+}
+
+.gradient {
+	background: var(--colors-gradient-primary);
+	color: var(--colors-text-secondary);
+
+	:nth-child(n) {
+		fill: var(--colors-text-secondary);
+	}
+
+	&:hover {
+		filter: brightness(1.05);
+	}
+
+	&:active {
+		filter: brightness(1.1);
+	}
+}

@@ -8,7 +8,7 @@ export const HomePage = () => {
   return (
     <div className={styles.page}>
       <Container className={styles.banner}>
-        <h1>PASS QUALIFICATION ON OUT PORTAL</h1>
+        <h1>PASS CERTIFICATION WITH OUR SERVICE</h1>
         <img src={banner} alt="Background" />
       </Container>
     </div>

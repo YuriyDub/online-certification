@@ -1,7 +1,5 @@
 import { Button } from '../UI/Button';
 
-import { ReactComponent as AccountIcon } from '../../assets/icons/account.svg';
-
 import styles from './AuthButtonGroup.module.scss';
 import { NavLink } from 'react-router-dom';
 

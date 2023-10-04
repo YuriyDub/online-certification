@@ -10,7 +10,7 @@ export const CourseCard = ({
   return (
     <div className={styles.border}>
       <div className={styles.card}>
-        <img src={img} />
+        <img src={img} alt="Course preview" />
         <article>
           <h2>{title} </h2>
           <Divider />

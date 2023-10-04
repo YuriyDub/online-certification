@@ -33,6 +33,8 @@ export const HomePage = () => {
             <CourseCard />
             <CourseCard />
             <CourseCard />
+            <CourseCard />
+            <CourseCard />
           </section>
         </Container>
       </section>

@@ -29,6 +29,8 @@
 	.coursesBackground {
 		width: 100%;
 		background: var(--colors-gradient-primary);
+		background-size: 500% 500%;
+		animation: gradient 60s ease-in-out infinite;
 
 		.courses {
 			margin-top: 10px;
@@ -55,5 +57,17 @@
 				font-size: var(--fs-md);
 			}
 		}
+	}
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
 	}
 }

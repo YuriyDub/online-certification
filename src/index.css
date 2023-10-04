@@ -24,12 +24,7 @@
 body[data-theme="light"] {
 	--colors-primary: #ffffff;
 	--colors-secondary: #e4e4e4;
-	--colors-gradient-primary: linear-gradient(
-		140deg,
-		rgba(143, 255, 184, 1) 0%,
-		rgba(13, 208, 215, 1) 59%,
-		rgba(0, 212, 255, 1) 100%
-	);
+	--colors-gradient-primary: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
 	--colors-line: #d4d4d4;
 	--colors-text-primary: #000000;
 	--colors-text-secondary: #fff;

@@ -5,7 +5,7 @@ import { Divider } from '../UI/Divider';
 export const CourseCard = ({
   img = placeholder,
   title = 'New Course',
-  description = 'Amet consequat do irure aliqua labore do exercitation est velit consectetur et.',
+  description = 'Amet consequat do irue aliqua labore do exercitation est velit consectetur et.',
 }) => {
   return (
     <div className={styles.border}>

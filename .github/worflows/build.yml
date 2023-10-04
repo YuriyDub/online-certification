@@ -1,0 +1,46 @@
+name: CI/CD
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Show GitHub Actor
+        run: echo $GITHUB_ACTOR
+
+      - name: Install npm dependencies
+        run: npm install
+
+      - name: Run build task
+        run: npm run build --if-present
+
+      - name: Install PM2
+        run: npm install pm2 -g
+
+      - name: Start React app with PM2
+        run: pm2 start npm --name "online-chat-client" -- start -- --port 8080
+        env:
+          PM2_PUBLIC: true # Дозволяємо PM2 служити додаток на відкритому порті
+
+      - name: Deploy to Server
+        uses: easingthemes/ssh-deploy@main
+        with:
+          SSH_PRIVATE_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          ARGS: '-rlgoDzvc -i --delete'
+          REMOTE_HOST: ${{ secrets.HOST_DNS }}
+          REMOTE_USER: ${{ secrets.USERNAME }}
+          TARGET: ${{ secrets.REMOTE_TARGET }}
+          EXCLUDE: '/node_modules/'

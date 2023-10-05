@@ -1,5 +1,4 @@
 import { Button } from '../UI/Button';
-import { Divider } from '../UI/Divider';
 
 import styles from './AuthButtonGroup.module.scss';
 import { NavLink } from 'react-router-dom';

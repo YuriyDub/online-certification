@@ -4,8 +4,10 @@
 
 .button {
 	display: flex;
+	width: min-content;
 	align-items: center;
 	justify-content: center;
+	box-sizing: border-box;
 	background-color: inherit;
 	height: 40px;
 	border-radius: 100;
@@ -28,54 +30,91 @@
 }
 
 .default {
-	color: var(--colors-text-primary);
+	color: var(--colors-text-secondary);
+	background-color: var(--colors-ui-base-primary);
+	box-shadow:
+		0px 0px 5px var(--colors-ui-shadow-primary) inset,
+		0px 0px 5px var(--colors-shadow);
+	border: 2px solid var(--colors-ui-base-primary);
 
 	:nth-child(n) {
 		fill: var(--colors-text-primary);
 	}
 
 	&:hover {
-		background-color: var(--colors-text-secondary);
-		opacity: var(--opacity-button-highlight);
+		box-shadow:
+			0px 0px 20px var(--colors-ui-shadow-primary) inset,
+			0px 0px 5px var(--colors-shadow);
 	}
 
 	&:active {
-		background-color: var(--colors-text-secondary);
-		opacity: var(--opacity-button-click);
+		box-shadow:
+			0px 0px 1px var(--colors-ui-shadow-primary) inset,
+			0px 0px 15px var(--colors-shadow);
 	}
 }
 
 .inverse {
-	color: var(--colors-text-secondary);
+	color: var(--colors-text-primary);
+	background-color: var(--colors-ui-base-secondary);
+	box-shadow:
+		0px 0px 5px var(--colors-ui-shadow-secondary) inset,
+		0px 0px 5px var(--colors-shadow);
+	border: 2px solid var(--colors-ui-shadow-secondary);
 
 	:nth-child(n) {
 		fill: var(--colors-text-secondary);
 	}
 
 	&:hover {
-		background-color: var(--colors-text-primary);
-		opacity: var(--opacity-button-highlight);
+		box-shadow:
+			0px 0px 20px var(--colors-ui-shadow-secondary) inset,
+			0px 0px 5px var(--colors-shadow);
 	}
 
 	&:active {
-		background-color: var(--colors-text-primary);
-		opacity: var(--opacity-button-click);
+		box-shadow:
+			0px 0px 1px var(--colors-ui-shadow-secondary) inset,
+			0px 0px 15px var(--colors-shadow);
 	}
 }
 
 .gradient {
-	background: var(--colors-gradient-primary);
 	color: var(--colors-text-secondary);
+	background: var(--colors-gradient-primary);
+	background-color: var(--colors-ui-base-primary);
+	box-shadow:
+		0px 0px 5px var(--colors-ui-shadow-primary) inset,
+		0px 0px 5px var(--colors-shadow);
+	border: 2px solid var(--colors-ui-base-primary);
+	background-size: 300% 300%;
+	animation: gradient 60s ease infinite;
 
 	:nth-child(n) {
 		fill: var(--colors-text-secondary);
 	}
 
 	&:hover {
-		filter: brightness(1.05);
+		box-shadow:
+			0px 0px 20px var(--colors-ui-shadow-primary) inset,
+			0px 0px 5px var(--colors-shadow);
 	}
 
 	&:active {
-		filter: brightness(1.1);
+		box-shadow:
+			0px 0px 1px var(--colors-ui-shadow-primary) inset,
+			0px 0px 15px var(--colors-shadow);
+	}
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
 	}
 }

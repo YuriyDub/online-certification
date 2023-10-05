@@ -1,20 +1,25 @@
 .frame {
 	display: flex;
 	align-items: center;
-	background-color: var(--colors-primary);
+	background-color: var(--colors-ui-base-primary);
+	box-shadow:
+		0px 0px 5px var(--colors-ui-shadow-primary) inset,
+		0px 0px 5px var(--colors-shadow);
+	border: 2px solid var(--colors-ui-base-primary);
 	border-radius: var(--rad);
 	height: 40px;
 	max-width: 480px;
+	padding-right: 5px;
 	flex-grow: 1;
 
 	input {
 		padding: 0px 10px 0px 10px;
-		margin: 0 5px 0 20px;
+		margin: 0 0px 0 5px;
 		height: 30px;
 		border: 0;
 		flex-grow: 1;
 		border-radius: var(--rad);
-		background-color: var(--colors-secondary);
+		background-color: var(--colors-ui-shadow-primary);
 		font-weight: var(--fw-md);
 
 		&:focus {

@@ -7,7 +7,7 @@ export const Search = ({ placeHolder = 'Search...', className, onChange, ...prop
   return (
     <div className={styles.frame + ' ' + className} {...props}>
       <input placeholder={placeHolder} onChange={onChange} />
-      <IconButton variant="inverse">
+      <IconButton>
         <SearchIcon />
       </IconButton>
     </div>

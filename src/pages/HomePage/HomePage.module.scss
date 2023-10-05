@@ -31,12 +31,21 @@
 		background: var(--colors-gradient-primary);
 		background-size: 500% 500%;
 		animation: gradient 60s ease-in-out infinite;
+		padding-bottom: 300px;
+
+		.title {
+			text-align: center;
+			color: var(--colors-text-secondary);
+			font-size: var(--fs-hg);
+			font-weight: var(--fw-b);
+			text-transform: uppercase;
+			padding: 50px;
+		}
 
 		.courses {
-			margin-top: 10px;
 			margin-bottom: 10px;
 			display: grid;
-			grid-template-columns: 1fr 1fr 1fr 1fr;
+			grid-template-columns: 1fr 1fr;
 			gap: 20px;
 		}
 	}

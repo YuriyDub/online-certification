@@ -1,6 +1,7 @@
 import styles from './CourseCard.module.scss';
 import placeholder from '../../assets/img/banner.jpg';
 import { Divider } from '../UI/Divider';
+import { Button } from '../UI/Button';
 
 export const CourseCard = ({
   img = placeholder,
@@ -15,6 +16,9 @@ export const CourseCard = ({
           <h2>{title} </h2>
           <Divider />
           <p>{description}</p>
+          <Button variant="gradient" className={styles.detailsButton}>
+            Details
+          </Button>
         </article>
       </div>
     </div>

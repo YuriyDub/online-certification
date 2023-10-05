@@ -14,7 +14,7 @@
 	--fw-b: 700;
 	--fw-exb: 800;
 	--fw-bl: 900;
-	--fs-sm: 14px;
+	--fs-sm: 18px;
 	--fs-md: 22px;
 	--fs-bg: 36px;
 	--fs-hg: 72px;
@@ -24,10 +24,19 @@
 body[data-theme="light"] {
 	--colors-primary: #ffffff;
 	--colors-secondary: #e4e4e4;
+
+	--colors-ui-base-primary: rgb(255, 255, 255, 0.3);
+	--colors-ui-shadow-primary: rgb(255, 255, 255, 0.8);
+	--colors-ui-base-secondary: rgba(0, 0, 0, 0.2);
+	--colors-ui-shadow-secondary: rgb(0, 0, 0, 0.3);
+
 	--colors-gradient-primary: linear-gradient(-45deg, #ee7752, #e73c7e, #23a6d5, #23d5ab);
+
 	--colors-line: #d4d4d4;
+
 	--colors-text-primary: #000000;
 	--colors-text-secondary: #fff;
+
 	--opacity-button-highlight: 0.8;
 	--opacity-button-click: 0.5;
 }

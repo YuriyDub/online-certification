@@ -1,4 +1,5 @@
 import { Button } from '../UI/Button';
+import { Divider } from '../UI/Divider';
 
 import styles from './AuthButtonGroup.module.scss';
 import { NavLink } from 'react-router-dom';
@@ -10,7 +11,7 @@ export const AuthButtonGroup = () => {
         <Button>Sigh in</Button>
       </NavLink>
       <NavLink to="/log-in">
-        <Button variant="inverse">Log in</Button>
+        <Button>Log in</Button>
       </NavLink>
     </div>
   );

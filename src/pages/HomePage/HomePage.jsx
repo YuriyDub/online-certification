@@ -1,6 +1,5 @@
 import { Container } from '../../components/UI/Container';
 import { Divider } from '../../components/UI/Divider';
-import { Button } from '../../components/UI/Button';
 
 import banner from '../../assets/img/banner1.jpg';
 

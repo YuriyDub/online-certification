@@ -39,31 +39,58 @@
 			font-size: var(--fs-hg);
 			font-weight: var(--fw-b);
 			text-transform: uppercase;
-			padding: 50px;
+			padding: 40px 0px 30px 0px;
 		}
 
 		.courses {
+			margin-top: 10px;
 			margin-bottom: 10px;
 			display: grid;
-			grid-template-columns: 1fr 1fr;
+			grid-template-columns: 1fr 1fr 1fr 1fr;
 			gap: 20px;
+		}
+	}
+
+	@media (max-width: 1240px) {
+		.banner {
+			h1 {
+				font-size: var(--fs-bg);
+			}
+		}
+		.coursesBackground {
+			.courses {
+				grid-template-columns: 1fr 1fr 1fr;
+			}
 		}
 	}
 
 	@media (max-width: 768px) {
 		.banner {
-			margin-top: 30px;
 			h1 {
 				font-size: var(--fs-bg);
+			}
+		}
+		.coursesBackground {
+			.title {
+				font-size: var(--fs-bg);
+			}
+
+			.courses {
+				grid-template-columns: 1fr 1fr;
 			}
 		}
 	}
 
 	@media (max-width: 480px) {
 		.banner {
-			margin-top: 10px;
 			h1 {
 				font-size: var(--fs-md);
+			}
+		}
+
+		.coursesBackground {
+			.courses {
+				grid-template-columns: 1fr;
 			}
 		}
 	}

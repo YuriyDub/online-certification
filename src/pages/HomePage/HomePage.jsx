@@ -20,6 +20,7 @@ export const HomePage = () => {
       <section className={styles.coursesBackground}>
         <Container>
           <h1 className={styles.title}>Recommended:</h1>
+          <Divider />
           <section className={styles.courses}>
             <CourseCard />
             <CourseCard />

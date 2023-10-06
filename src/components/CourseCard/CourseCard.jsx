@@ -1,6 +1,5 @@
 import styles from './CourseCard.module.scss';
 import placeholder from '../../assets/img/banner.jpg';
-import { Divider } from '../UI/Divider';
 import { Button } from '../UI/Button';
 
 export const CourseCard = ({

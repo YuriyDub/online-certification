@@ -4,7 +4,9 @@
 
 :root {
 	--container-max-width: 1280px;
+
 	--rad: 30px;
+
 	--fw-th: 100;
 	--fw-exl: 200;
 	--fw-l: 300;
@@ -14,11 +16,17 @@
 	--fw-b: 700;
 	--fw-exb: 800;
 	--fw-bl: 900;
+
 	--fs-sm: 18px;
 	--fs-md: 22px;
 	--fs-bg: 36px;
 	--fs-hg: 72px;
+
 	--colors-shadow: #00000060;
+
+	--opacity-lw: 0.8;
+	--opacity-md: 0.5;
+	--opacity-hg: 0.3;
 }
 
 body[data-theme="light"] {
@@ -36,9 +44,6 @@ body[data-theme="light"] {
 
 	--colors-text-primary: #000000;
 	--colors-text-secondary: #fff;
-
-	--opacity-button-highlight: 0.8;
-	--opacity-button-click: 0.5;
 }
 
 body[data-theme="dark"] {
@@ -53,8 +58,6 @@ body[data-theme="dark"] {
 	--colors-line: #fff;
 	--colors-text-primary: #fff;
 	--colors-text-secondary: #000000;
-	--opacity-button-highlight: 0.8;
-	--opacity-button-click: 0.5;
 }
 
 body {

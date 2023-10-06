@@ -17,32 +17,34 @@
 		overflow: hidden;
 		width: 100%;
 		box-sizing: border-box;
-		border-radius: 25px 25px 25px 25px;
+		border-radius: 25px 25px 0px 0px;
 		box-shadow: 0px 0px 5px var(--colors-shadow) inset;
 	}
 
-	article {
+	.description {
 		display: flex;
-		flex-direction: column;
-		justify-content: flex-start;
+		justify-content: space-between;
 		padding: 10px;
 		user-select: none;
 
-		h2 {
-			color: var(--colors-text-secondary);
-			font-size: var(--fs-md);
-			font-weight: var(--fw-sb);
-		}
-		p {
-			color: var(--colors-text-secondary);
-			font-size: var(--fs-sm);
-			font-weight: var(--fw-md);
-		}
+		article {
+			display: flex;
+			flex-direction: column;
+			gap: 5px;
 
+			h2 {
+				color: var(--colors-text-secondary);
+				font-size: var(--fs-md);
+				font-weight: var(--fw-sb);
+			}
+			p {
+				color: var(--colors-text-secondary);
+				opacity: var(--opacity-lw);
+				font-size: var(--fs-sm);
+			}
+		}
 		.detailsButton {
-			margin-top: 10px;
 			align-self: flex-end;
-			justify-self: flex-end;
 		}
 	}
 

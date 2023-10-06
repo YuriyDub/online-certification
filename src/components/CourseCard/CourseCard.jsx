@@ -6,20 +6,21 @@ import { Button } from '../UI/Button';
 export const CourseCard = ({
   img = placeholder,
   title = 'New Course',
-  description = 'Amet conseqeuat do irue aliqua labore do exesdrcitation est velit condectetur et.',
+  description = 'Ivan Ivanov',
 }) => {
   return (
     <div className={styles.border}>
       <div className={styles.card}>
         <img src={img} alt="Course preview" />
-        <article>
-          <h2>{title} </h2>
-          <Divider />
-          <p>{description}</p>
+        <div className={styles.description}>
+          <article>
+            <h2>{title} </h2>
+            <p>{description}</p>
+          </article>
           <Button variant="gradient" className={styles.detailsButton}>
             Details
           </Button>
-        </article>
+        </div>
       </div>
     </div>
   );

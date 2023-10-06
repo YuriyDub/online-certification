@@ -1,8 +1,7 @@
 ------------------------------------------------------
-               Online-Certification
-------------------------------------------------------
+# Online-Certification
 
-Requirements for the frontend (React):
+## Requirements for the frontend (React):
 Authorization and registration:
 - Develop login and registration pages for users.
 - Implement the authorization mechanism and form data processing.
@@ -30,6 +29,5 @@ Forums and communities:
 Mobile optimization:
 - Ensure that the frontend is adapted to work on different mobile devices with different screen sizes.
 
-------------------------------------------------------
-Link: http://ec2-54-211-16-251.compute-1.amazonaws.com
+## Link: http://ec2-54-211-16-251.compute-1.amazonaws.com
 ------------------------------------------------------

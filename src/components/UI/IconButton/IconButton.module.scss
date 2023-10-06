@@ -18,13 +18,13 @@
 
 	&:hover {
 		:first-child {
-			opacity: var(--opacity-button-highlight);
+			opacity: var(--opacity-lw);
 		}
 	}
 
 	&:active {
 		:first-child {
-			opacity: var(--opacity-button-click);
+			opacity: var(--opacity-md);
 		}
 	}
 }

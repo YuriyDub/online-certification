@@ -7,7 +7,7 @@ export const AuthButtonGroup = () => {
   return (
     <div className={styles.group}>
       <NavLink to="/sign-in">
-        <Button>Sigh in</Button>
+        <Button>Sigh up</Button>
       </NavLink>
       <NavLink to="/log-in">
         <Button>Log in</Button>

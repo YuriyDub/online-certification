@@ -18,12 +18,14 @@
 	--fw-exb: 800;
 	--fw-bl: 900;
 
+	--fs-lt: 12px;
 	--fs-sm: 18px;
 	--fs-md: 22px;
 	--fs-bg: 36px;
 	--fs-hg: 72px;
 
 	--colors-shadow: #00000060;
+	--colors-incorrect: #f10000;
 
 	--opacity-lw: 0.8;
 	--opacity-md: 0.5;

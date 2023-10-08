@@ -1,5 +1,5 @@
 import styles from './CourseCard.module.scss';
-import placeholder from '../../assets/img/banner.jpg';
+import placeholder from '../../assets/img/placeholder.jpg';
 import { Button } from '../UI/Button';
 
 export const CourseCard = ({

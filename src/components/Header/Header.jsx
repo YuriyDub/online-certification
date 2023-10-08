@@ -1,6 +1,6 @@
 import { Container } from '../UI/Container';
 import { IconButton } from '../UI/IconButton';
-import { Search } from '../UI/Search';
+import { Search } from '../Search';
 
 import { ReactComponent as LogoIcon } from '../../assets/icons/logo.svg';
 

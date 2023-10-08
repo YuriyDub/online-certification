@@ -3,6 +3,7 @@ import { Header } from './components/Header';
 
 import styles from './App.module.scss';
 import { HomePage } from './pages/HomePage';
+import { LogInPage } from './pages/LogInPage';
 
 const App = () => {
   return (
@@ -10,6 +11,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route index element={<HomePage />} />
+        <Route path="/log-in" element={<LogInPage />} />
       </Routes>
     </div>
   );

@@ -6,7 +6,7 @@ import { NavLink } from 'react-router-dom';
 export const AuthButtonGroup = () => {
   return (
     <div className={styles.group}>
-      <NavLink to="/sign-in">
+      <NavLink to="/sign-up">
         <Button>Sigh up</Button>
       </NavLink>
       <NavLink to="/log-in">

@@ -3,9 +3,9 @@ import { Button } from '../../components/UI/Button';
 import { Container } from '../../components/UI/Container';
 import { Input } from '../../components/UI/Input/Input';
 
-import styles from './LogInPage.module.scss';
+import styles from './SignUpPage.module.scss';
 
-export const LogInPage = () => {
+export const SignUpPage = () => {
   const {
     formState: { errors },
     handleSubmit,
@@ -23,7 +23,29 @@ export const LogInPage = () => {
     <div className={styles.page}>
       <Container className={styles.container}>
         <form onSubmit={handleSubmit(submitHandler)}>
-          <h2>Log in</h2>
+          <h2>Sign up</h2>
+          <Controller
+            name="username"
+            control={control}
+            rules={{
+              required: 'username is required',
+              pattern: {
+                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/,
+                message: 'incorrect email address',
+              },
+            }}
+            defaultValue=""
+            render={({ field }) => (
+              <Input
+                name={field.name}
+                value={field.value}
+                onChange={field.onChange}
+                placeHolder="username"
+                label="username"
+                errorMessage={errors?.email?.message}
+              />
+            )}
+          />
           <Controller
             name="email"
             control={control}

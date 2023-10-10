@@ -24,6 +24,8 @@ export const HomePage = () => {
   const [category, setCategory] = useState('All');
   const [courses, setCourses] = useState();
 
+  console.log(courses);
+
   useEffect(() => {
     setCourses(getCoursesCards());
   }, []);

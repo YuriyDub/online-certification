@@ -29,7 +29,7 @@ export const HomePage = () => {
   useEffect(() => {
     setCourses(getCoursesCards());
     console.log(courses);
-  }, []);
+  }, [courses]);
 
   return (
     <div className={styles.page}>

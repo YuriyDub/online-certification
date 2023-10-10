@@ -6,7 +6,8 @@ import banner from '../../assets/img/banner1.jpg';
 import styles from './HomePage.module.scss';
 import { CourseCard } from '../../components/CourseCard/CourseCard';
 import { Categories } from '../../components/Categories';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { getCoursesCards } from '../../utils';
 
 const categories = [
   'All',
@@ -21,6 +22,11 @@ const categories = [
 
 export const HomePage = () => {
   const [category, setCategory] = useState('All');
+  const [courses, setCourses] = useState();
+
+  useEffect(() => {
+    setCourses(getCoursesCards());
+  }, []);
 
   return (
     <div className={styles.page}>
@@ -38,22 +44,9 @@ export const HomePage = () => {
           <Categories categories={categories} setCategory={setCategory} category={category} />
           <Divider />
           <section className={styles.courses}>
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
-            <CourseCard />
+            {courses.map((c) => (
+              <CourseCard title={c.title} author={c.author} key={c._id} />
+            ))}
           </section>
         </Container>
       </section>

@@ -1,3 +1,4 @@
+import { v1 } from 'uuid';
 import styles from './Categories.module.scss';
 
 export const Categories = ({ categories, setCategory, category }) => {
@@ -5,6 +6,7 @@ export const Categories = ({ categories, setCategory, category }) => {
     <section className={styles.categories}>
       {categories.map((c) => (
         <Category
+          id={v1()}
           name={c}
           onClick={() => {
             setCategory(c);

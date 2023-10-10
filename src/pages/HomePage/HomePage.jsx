@@ -3,11 +3,14 @@ import { Divider } from '../../components/UI/Divider';
 
 import banner from '../../assets/img/banner1.jpg';
 
-import styles from './HomePage.module.scss';
 import { CourseCard } from '../../components/CourseCard/CourseCard';
 import { Categories } from '../../components/Categories';
 import { useEffect, useState } from 'react';
-import { getCoursesCards } from '../../utils';
+import { COURSES_CARDS_URL } from '../../constants';
+
+import axios from 'axios';
+
+import styles from './HomePage.module.scss';
 
 const categories = [
   'All',
@@ -24,12 +27,14 @@ export const HomePage = () => {
   const [category, setCategory] = useState('All');
   const [courses, setCourses] = useState([]);
 
-  console.log(getCoursesCards());
-
   useEffect(() => {
-    setCourses(getCoursesCards());
-    console.log(courses);
-  }, [courses]);
+    axios
+      .get(COURSES_CARDS_URL)
+      .then((response) => {
+        setCourses(response.data);
+      })
+      .catch((error) => console.error(error));
+  }, []);
 
   return (
     <div className={styles.page}>

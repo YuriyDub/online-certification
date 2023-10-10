@@ -22,9 +22,9 @@ const categories = [
 
 export const HomePage = () => {
   const [category, setCategory] = useState('All');
-  const [courses, setCourses] = useState();
+  const [courses, setCourses] = useState([]);
 
-  console.log(courses);
+  console.log(getCoursesCards());
 
   useEffect(() => {
     setCourses(getCoursesCards());

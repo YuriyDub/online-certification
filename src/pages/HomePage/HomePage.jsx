@@ -46,7 +46,7 @@ export const HomePage = () => {
           <Categories categories={categories} setCategory={setCategory} category={category} />
           <Divider />
           <section className={styles.courses}>
-            {courses.map((c) => (
+            {courses?.map((c) => (
               <CourseCard title={c.title} author={c.author} key={c._id} />
             ))}
           </section>

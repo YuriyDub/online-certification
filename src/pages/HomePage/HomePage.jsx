@@ -6,9 +6,9 @@ import banner from '../../assets/img/banner1.jpg';
 import { CourseCard } from '../../components/CourseCard/CourseCard';
 import { Categories } from '../../components/Categories';
 import { useEffect, useState } from 'react';
-import { COURSES_CARDS_URL } from '../../constants';
 
-import axios from 'axios';
+import { COURSES_CARDS_URL } from '../../constants';
+import { fetchData } from '../../utils';
 
 import styles from './HomePage.module.scss';
 
@@ -28,12 +28,7 @@ export const HomePage = () => {
   const [courses, setCourses] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(COURSES_CARDS_URL)
-      .then((response) => {
-        setCourses(response.data);
-      })
-      .catch((error) => console.error(error));
+    fetchData(COURSES_CARDS_URL).then((res) => setCourses(res.data));
   }, []);
 
   return (

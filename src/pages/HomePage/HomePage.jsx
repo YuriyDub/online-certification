@@ -49,6 +49,15 @@ export const HomePage = () => {
             {courses?.map((c) => (
               <CourseCard title={c.title} author={c.author} key={c._id} />
             ))}
+            <CourseCard />
+            <CourseCard />
+            <CourseCard />
+            <CourseCard />
+            <CourseCard />
+            <CourseCard />
+            <CourseCard />
+            <CourseCard />
+            <CourseCard />
           </section>
         </Container>
       </section>

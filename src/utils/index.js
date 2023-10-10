@@ -5,6 +5,7 @@ export const getCoursesCards = () => {
   axios
     .get(COURSES_CARDS_URL)
     .then((response) => {
+      console.log(response);
       return response.data;
     })
     .catch((error) => console.error(error));

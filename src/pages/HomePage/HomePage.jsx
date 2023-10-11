@@ -8,7 +8,7 @@ import { Categories } from '../../components/Categories';
 import { useEffect, useState } from 'react';
 
 import { COURSES_CARDS_URL } from '../../constants';
-import { fetchData } from '../../utils';
+import { fetchData } from '../../utils/network';
 
 import styles from './HomePage.module.scss';
 

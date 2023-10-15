@@ -6,7 +6,6 @@ import { Container } from '../../components/UI/Container';
 import { Input } from '../../components/UI/Input/Input';
 import { signIn } from '../../utils/network';
 import styles from './LogInPage.module.scss';
-import { json } from 'react-router-dom';
 
 export const LogInPage = () => {
   const {

@@ -27,6 +27,12 @@ export const HomePage = () => {
   const [category, setCategory] = useState('All');
   const [courses, setCourses] = useState([]);
 
+  const filterCourses = (courses) => {
+    return category === 'All' ? courses : courses.filter((c) => c.category === category);
+  };
+
+  const sortedCourses = filterCourses(courses);
+
   //   const token = useSelector((state) => state.auth.token);
   const token = localStorage.getItem('token');
 
@@ -55,7 +61,7 @@ export const HomePage = () => {
           <Categories categories={categories} setCategory={setCategory} category={category} />
           <Divider />
           <section className={styles.courses}>
-            {courses?.map((c) => (
+            {sortedCourses?.map((c) => (
               <CourseCard
                 title={c.title}
                 author={c.author}

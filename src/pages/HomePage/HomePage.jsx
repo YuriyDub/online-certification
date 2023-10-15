@@ -31,7 +31,12 @@ export const HomePage = () => {
   const token = localStorage.getItem('token');
 
   useEffect(() => {
-    setCourses(fetchCourses(token));
+    const fetchData = async () => {
+      const newCourses = await fetchCourses(token);
+      setCourses(newCourses);
+    };
+
+    fetchData();
   }, [token]);
 
   return (
@@ -50,15 +55,14 @@ export const HomePage = () => {
           <Categories categories={categories} setCategory={setCategory} category={category} />
           <Divider />
           <section className={styles.courses}>
-            {courses.isArray &&
-              courses?.map((c) => (
-                <CourseCard
-                  title={c.title}
-                  author={c.author}
-                  key={c._id}
-                  description={c.description}
-                />
-              ))}
+            {courses?.map((c) => (
+              <CourseCard
+                title={c.title}
+                author={c.author}
+                key={c._id}
+                description={c.description}
+              />
+            ))}
           </section>
         </Container>
       </section>

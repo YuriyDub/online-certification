@@ -7,10 +7,10 @@ import { CourseCard } from '../../components/CourseCard/CourseCard';
 import { Categories } from '../../components/Categories';
 import { useEffect, useState } from 'react';
 
-import { COURSES_CARDS_URL } from '../../constants';
-import { fetchData } from '../../utils/network';
+import { fetchCourses } from '../../utils/network';
 
 import styles from './HomePage.module.scss';
+// import { useSelector } from 'react-redux';
 
 const categories = [
   'All',
@@ -27,9 +27,12 @@ export const HomePage = () => {
   const [category, setCategory] = useState('All');
   const [courses, setCourses] = useState([]);
 
+  //   const token = useSelector((state) => state.auth.token);
+  const token = localStorage.getItem('token');
+
   useEffect(() => {
-    fetchData(COURSES_CARDS_URL).then((res) => setCourses(res.data));
-  }, []);
+    setCourses(fetchCourses(token));
+  }, [token]);
 
   return (
     <div className={styles.page}>
@@ -47,9 +50,15 @@ export const HomePage = () => {
           <Categories categories={categories} setCategory={setCategory} category={category} />
           <Divider />
           <section className={styles.courses}>
-            {courses?.map((c) => (
-              <CourseCard title={c.title} author={c.author} key={c._id} />
-            ))}
+            {courses.isArray &&
+              courses?.map((c) => (
+                <CourseCard
+                  title={c.title}
+                  author={c.author}
+                  key={c._id}
+                  description={c.description}
+                />
+              ))}
           </section>
         </Container>
       </section>

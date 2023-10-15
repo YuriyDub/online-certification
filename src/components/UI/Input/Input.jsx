@@ -7,7 +7,6 @@ export const Input = ({
   className,
   ...props
 }) => {
-  console.log(props);
   return (
     <div style={{ position: 'relative' }}>
       {label ? <label className={styles.label}>{label}:</label> : label}

@@ -6,7 +6,7 @@ export const Categories = ({ categories, setCategory, category }) => {
     <section className={styles.categories}>
       {categories.map((c) => (
         <Category
-          id={v1()}
+          key={v1()}
           name={c}
           onClick={() => {
             setCategory(c);

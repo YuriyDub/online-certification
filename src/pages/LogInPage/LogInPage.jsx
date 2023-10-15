@@ -1,9 +1,12 @@
+import { useDispatch } from 'react-redux';
+import { setToken } from '../../store/slices/authSlice';
 import { Controller, useForm } from 'react-hook-form';
 import { Button } from '../../components/UI/Button';
 import { Container } from '../../components/UI/Container';
 import { Input } from '../../components/UI/Input/Input';
-
+import { signIn } from '../../utils/network';
 import styles from './LogInPage.module.scss';
+import { json } from 'react-router-dom';
 
 export const LogInPage = () => {
   const {
@@ -14,8 +17,22 @@ export const LogInPage = () => {
     reset,
   } = useForm({ mode: 'onSubmit' });
 
+  const dispatch = useDispatch();
+
+  const handleLogIn = async (email, password) => {
+    try {
+      const newToken = await signIn(email, password);
+      localStorage.setItem('token', newToken.token);
+      dispatch(setToken(newToken.token));
+    } catch (err) {
+      console.error(err);
+    }
+  };
+
   const submitHandler = (data) => {
-    alert(JSON.stringify(data));
+    const { username, password } = data;
+
+    handleLogIn(username, password);
     reset();
   };
 
@@ -25,13 +42,14 @@ export const LogInPage = () => {
         <form onSubmit={handleSubmit(submitHandler)}>
           <h2>Log in</h2>
           <Controller
-            name="email"
+            name="username"
             control={control}
             rules={{
-              required: 'email is required',
+              required: 'username is required',
               pattern: {
-                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/,
-                message: 'incorrect email address',
+                required: 'username is required',
+                minLength: { value: 8, message: 'Min length is 8 symbols' },
+                maxLength: { value: 20, message: 'Max length is 20 symbols' },
               },
             }}
             defaultValue=""
@@ -40,9 +58,9 @@ export const LogInPage = () => {
                 name={field.name}
                 value={field.value}
                 onChange={field.onChange}
-                placeHolder="email"
-                label="email"
-                errorMessage={errors?.email?.message}
+                placeHolder="username"
+                label="username"
+                errorMessage={errors?.username?.message}
               />
             )}
           />

@@ -6,13 +6,9 @@ const instanceAxios = axios.create({
   baseURL: API_URL,
 });
 
-export const fetchCourses = async (token, page) => {
+export const fetchCourses = async (page) => {
   try {
-    const response = await instanceAxios.get(COURSES_CARDS_URL + `?page=${page}&limit=10`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+    const response = await instanceAxios.get(COURSES_CARDS_URL + `?page=${page}&limit=10`, {});
     return response.data;
   } catch (error) {
     console.error('Fetch courses error:', error);

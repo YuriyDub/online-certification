@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import CircleLoader from 'react-spinners/CircleLoader';
-import { useQuery } from 'react-query';
+import useCourseQuery from '../../hooks/useCourseQuery';
 import { Container } from '../../components/UI/Container';
 import { Divider } from '../../components/UI/Divider';
 import { CourseCard } from '../../components/CourseCard/CourseCard';
 import { Categories } from '../../components/Categories';
-import { fetchCourses } from '../../utils/network';
 import banner from '../../assets/img/banner1.jpg';
-import { Button } from '../../components/UI/Button';
 import styles from './HomePage.module.scss';
+import { Pagination } from '../../components/Pagination/Pagination';
 
 const categories = [
   'All',
@@ -25,14 +24,7 @@ export const HomePage = () => {
   const [category, setCategory] = useState('All');
   const [page, setPage] = useState(1);
 
-  const token = localStorage.getItem('token');
-
-  const { data, isLoading, refetch } = useQuery({
-    queryFn: () => fetchCourses(token, page),
-    queryKey: ['courses'],
-  });
-
-  console.log(data);
+  const { data, isLoading, refetch } = useCourseQuery(page);
 
   useEffect(() => {
     refetch();
@@ -40,14 +32,6 @@ export const HomePage = () => {
 
   const filterCourses = (courses = []) => {
     return category === 'All' ? courses : courses.filter((c) => c.category === category);
-  };
-
-  const nextPage = () => {
-    data.accessNextPage && setPage((prev) => prev + 1);
-  };
-
-  const prevPage = () => {
-    data.accessPreviousPage && setPage((prev) => prev - 1);
   };
 
   return (
@@ -79,13 +63,12 @@ export const HomePage = () => {
               ))
             )}
           </section>
-          <div className={styles.pagination}>
-            <Divider />
-            <Button onClick={prevPage}>Prev</Button>
-            <div className={styles.number}>{page}</div>
-            <Button onClick={nextPage}>Next</Button>
-            <Divider />
-          </div>
+          <Pagination
+            isNext={data?.accessNextPage}
+            isPrev={data?.accessPreviousPage}
+            page={page}
+            setPage={setPage}
+          />
         </Container>
       </section>
     </div>

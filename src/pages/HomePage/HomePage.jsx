@@ -10,6 +10,7 @@ import { useEffect, useState } from 'react';
 import { fetchCourses } from '../../utils/network';
 
 import styles from './HomePage.module.scss';
+import { Button } from '../../components/UI/Button';
 // import { useSelector } from 'react-redux';
 
 const categories = [
@@ -25,9 +26,10 @@ const categories = [
 
 export const HomePage = () => {
   const [category, setCategory] = useState('All');
+  const [page, setPage] = useState(0);
   const [courses, setCourses] = useState([]);
 
-  const filterCourses = (courses) => {
+  const filterCourses = (courses = []) => {
     return category === 'All' ? courses : courses.filter((c) => c.category === category);
   };
 
@@ -38,12 +40,12 @@ export const HomePage = () => {
 
   useEffect(() => {
     const fetchData = async () => {
-      const newCourses = await fetchCourses(token);
+      const newCourses = await fetchCourses(token, page);
       setCourses(newCourses);
     };
 
     fetchData();
-  }, [token]);
+  }, [token, page]);
 
   return (
     <div className={styles.page}>
@@ -70,6 +72,23 @@ export const HomePage = () => {
               />
             ))}
           </section>
+          <div className={styles.pagination}>
+            <Divider />
+            <Button
+              onClick={() => {
+                setPage((prev) => prev - 1);
+              }}>
+              Prev
+            </Button>
+            <div className={styles.number}>{page}</div>
+            <Button
+              onClick={() => {
+                setPage((prev) => prev + 1);
+              }}>
+              Next
+            </Button>
+            <Divider />
+          </div>
         </Container>
       </section>
     </div>

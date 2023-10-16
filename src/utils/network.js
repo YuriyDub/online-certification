@@ -6,9 +6,9 @@ const instanceAxios = axios.create({
   baseURL: API_URL,
 });
 
-export const fetchCourses = async (token) => {
+export const fetchCourses = async (token, page) => {
   try {
-    const response = await instanceAxios.get(COURSES_CARDS_URL, {
+    const response = await instanceAxios.get(COURSES_CARDS_URL + `?page=${page}&limit=10`, {
       headers: {
         Authorization: `Bearer ${token}`,
       },

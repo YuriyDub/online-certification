@@ -26,7 +26,7 @@ const categories = [
 
 export const HomePage = () => {
   const [category, setCategory] = useState('All');
-  const [page, setPage] = useState(0);
+  const [page, setPage] = useState(1);
   const [courses, setCourses] = useState([]);
 
   const filterCourses = (courses = []) => {

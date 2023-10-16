@@ -1,5 +1,3 @@
-import { useDispatch } from 'react-redux';
-import { setToken } from '../../store/slices/authSlice';
 import { Controller, useForm } from 'react-hook-form';
 import { Button } from '../../components/UI/Button';
 import { Container } from '../../components/UI/Container';
@@ -16,13 +14,11 @@ export const LogInPage = () => {
     reset,
   } = useForm({ mode: 'onSubmit' });
 
-  const dispatch = useDispatch();
 
   const handleLogIn = async (email, password) => {
     try {
       const newToken = await signIn(email, password);
       localStorage.setItem('token', newToken.token);
-      dispatch(setToken(newToken.token));
     } catch (err) {
       console.error(err);
     }

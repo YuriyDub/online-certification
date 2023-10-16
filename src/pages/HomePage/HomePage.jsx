@@ -1,17 +1,14 @@
+import { useEffect, useState } from 'react';
+import CircleLoader from 'react-spinners/CircleLoader';
+import { useQuery } from 'react-query';
 import { Container } from '../../components/UI/Container';
 import { Divider } from '../../components/UI/Divider';
-
-import banner from '../../assets/img/banner1.jpg';
-
 import { CourseCard } from '../../components/CourseCard/CourseCard';
 import { Categories } from '../../components/Categories';
-import { useEffect, useState } from 'react';
-
 import { fetchCourses } from '../../utils/network';
-
-import styles from './HomePage.module.scss';
+import banner from '../../assets/img/banner1.jpg';
 import { Button } from '../../components/UI/Button';
-// import { useSelector } from 'react-redux';
+import styles from './HomePage.module.scss';
 
 const categories = [
   'All',
@@ -27,25 +24,31 @@ const categories = [
 export const HomePage = () => {
   const [category, setCategory] = useState('All');
   const [page, setPage] = useState(1);
-  const [courses, setCourses] = useState([]);
+
+  const token = localStorage.getItem('token');
+
+  const { data, isLoading, refetch } = useQuery({
+    queryFn: () => fetchCourses(token, page),
+    queryKey: ['courses'],
+  });
+
+  console.log(data);
+
+  useEffect(() => {
+    refetch();
+  }, [page, refetch]);
 
   const filterCourses = (courses = []) => {
     return category === 'All' ? courses : courses.filter((c) => c.category === category);
   };
 
-  const sortedCourses = filterCourses(courses);
+  const nextPage = () => {
+    data.accessNextPage && setPage((prev) => prev + 1);
+  };
 
-  //   const token = useSelector((state) => state.auth.token);
-  const token = localStorage.getItem('token');
-
-  useEffect(() => {
-    const fetchData = async () => {
-      const newCourses = await fetchCourses(token, page);
-      setCourses(newCourses);
-    };
-
-    fetchData();
-  }, [token, page]);
+  const prevPage = () => {
+    data.accessPreviousPage && setPage((prev) => prev - 1);
+  };
 
   return (
     <div className={styles.page}>
@@ -63,30 +66,24 @@ export const HomePage = () => {
           <Categories categories={categories} setCategory={setCategory} category={category} />
           <Divider />
           <section className={styles.courses}>
-            {sortedCourses?.map((c) => (
-              <CourseCard
-                title={c.title}
-                author={c.author}
-                key={c._id}
-                description={c.description}
-              />
-            ))}
+            {isLoading ? (
+              <CircleLoader />
+            ) : (
+              filterCourses(data.courses).map((c) => (
+                <CourseCard
+                  title={c.title}
+                  author={c.author}
+                  key={c._id}
+                  description={c.description}
+                />
+              ))
+            )}
           </section>
           <div className={styles.pagination}>
             <Divider />
-            <Button
-              onClick={() => {
-                setPage((prev) => prev - 1);
-              }}>
-              Prev
-            </Button>
+            <Button onClick={prevPage}>Prev</Button>
             <div className={styles.number}>{page}</div>
-            <Button
-              onClick={() => {
-                setPage((prev) => prev + 1);
-              }}>
-              Next
-            </Button>
+            <Button onClick={nextPage}>Next</Button>
             <Divider />
           </div>
         </Container>

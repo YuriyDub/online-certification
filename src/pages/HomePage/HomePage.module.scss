@@ -61,11 +61,14 @@
 		gap: 10px;
 
 		.number {
+			display: flex;
+			align-items: center;
+			justify-content: center;
+			width: 100px;
+			height: 40px;
 			color: var(--colors-text-secondary);
 			font-weight: var(--fw-sb);
-			font-size: var(--fs-md);
-			padding: 20px;
-			text-align: center;
+			font-size: var(--fs-sm);
 			box-sizing: border-box;
 			background-color: var(--colors-ui-base-primary);
 			box-shadow:

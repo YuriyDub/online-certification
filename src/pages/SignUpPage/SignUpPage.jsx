@@ -1,9 +1,7 @@
-import { useDispatch } from 'react-redux';
 import { Controller, useForm } from 'react-hook-form';
 import { Button } from '../../components/UI/Button';
 import { Container } from '../../components/UI/Container';
 import { Input } from '../../components/UI/Input/Input';
-import { setToken } from '../../store/slices/authSlice';
 import { signUp } from '../../utils/network';
 import styles from './SignUpPage.module.scss';
 
@@ -16,12 +14,10 @@ export const SignUpPage = () => {
     reset,
   } = useForm({ mode: 'onSubmit' });
 
-  const dispatch = useDispatch();
-
   const handleSignUp = async (username, email, password) => {
     try {
       const newToken = await signUp(username, email, password);
-      dispatch(setToken(newToken));
+      localStorage.setItem('token', newToken.token);
     } catch (err) {
       alert(err);
     }

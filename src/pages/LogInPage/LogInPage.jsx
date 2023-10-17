@@ -14,10 +14,10 @@ export const LogInPage = () => {
     reset,
   } = useForm({ mode: 'onSubmit' });
 
-
-  const handleLogIn = async (email, password) => {
+  const handleLogIn = async (username, password) => {
     try {
-      const newToken = await signIn(email, password);
+      const newToken = await signIn(username, password);
+      console.log(JSON.stringify(newToken));
       localStorage.setItem('token', newToken.token);
     } catch (err) {
       console.error(err);

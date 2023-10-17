@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import CircleLoader from 'react-spinners/CircleLoader';
-import useCourseQuery from '../../hooks/useCourseQuery';
+import useCoursesQuery from '../../hooks/useCoursesQuery';
 import { Container } from '../../components/UI/Container';
 import { Divider } from '../../components/UI/Divider';
 import { CourseCard } from '../../components/CourseCard/CourseCard';
@@ -8,6 +8,7 @@ import { Categories } from '../../components/Categories';
 import banner from '../../assets/img/banner1.jpg';
 import styles from './HomePage.module.scss';
 import { Pagination } from '../../components/Pagination/Pagination';
+import { useNavigate } from 'react-router-dom';
 
 const categories = [
   'All',
@@ -24,7 +25,9 @@ export const HomePage = () => {
   const [category, setCategory] = useState('All');
   const [page, setPage] = useState(1);
 
-  const { data, isLoading, refetch } = useCourseQuery(page);
+  const { data, isLoading, refetch } = useCoursesQuery(page);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     refetch();
@@ -59,6 +62,9 @@ export const HomePage = () => {
                   author={c.author}
                   key={c._id}
                   description={c.description}
+                  onClick={() => {
+                    navigate(`/courses/${c._id}`);
+                  }}
                 />
               ))
             )}

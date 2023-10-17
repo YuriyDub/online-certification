@@ -5,6 +5,7 @@ import styles from './App.module.scss';
 import { HomePage } from './pages/HomePage';
 import { LogInPage } from './pages/LogInPage';
 import { SignUpPage } from './pages/SignUpPage';
+import { CoursePage } from './pages/CoursePage';
 
 const App = () => {
   return (
@@ -12,6 +13,7 @@ const App = () => {
       <Header />
       <Routes>
         <Route index element={<HomePage />} />
+        <Route path="/courses/:id" element={<CoursePage />} />
         <Route path="/log-in" element={<LogInPage />} />
         <Route path="/sign-up" element={<SignUpPage />} />
       </Routes>

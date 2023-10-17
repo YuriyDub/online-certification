@@ -1,10 +1,10 @@
 import { useQuery } from 'react-query';
-import { fetchCourses } from '../utils/network';
+import { fetchCourse } from '../utils/network';
 
-const useCourseQuery = (page) => {
+const useCourseQuery = (id, token) => {
   return useQuery({
-    queryFn: () => fetchCourses(page),
-    queryKey: ['courses'],
+    queryFn: () => fetchCourse(id, token),
+    queryKey: ['course'],
     staleTime: 1000 * 5,
   });
 };

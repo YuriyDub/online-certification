@@ -7,6 +7,7 @@ export const CourseCard = ({
   title = 'New Course',
   author = 'Ivan Ivanov',
   description = 'Nostrud laboris ea eiusmod ullamco sunt veniam excepteur dolor ipsum sunt quis.',
+  onClick,
 }) => {
   return (
     <div className={styles.border}>
@@ -20,7 +21,7 @@ export const CourseCard = ({
             <h2>{title} </h2>
             <p>{author}</p>
           </article>
-          <Button variant="gradient" className={styles.infoButton}>
+          <Button variant="gradient" className={styles.infoButton} onClick={onClick}>
             Details
           </Button>
         </div>

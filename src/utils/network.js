@@ -8,10 +8,23 @@ const instanceAxios = axios.create({
 
 export const fetchCourses = async (page) => {
   try {
-    const response = await instanceAxios.get(COURSES_CARDS_URL + `?page=${page}&limit=10`, {});
+    const response = await instanceAxios.get(COURSES_CARDS_URL + `?page=${page}&limit=10`);
     return response.data;
   } catch (error) {
     console.error('Fetch courses error:', error);
+  }
+};
+
+export const fetchCourse = async (id, token) => {
+  try {
+    const response = await instanceAxios.get(COURSES_CARDS_URL + `/${id}`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+    return response.data;
+  } catch (error) {
+    console.error('Fetch course error:', error);
   }
 };
 

@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect } from 'react';
 import useCourseQuery from '../../hooks/useCourseQuery';
 import placeholder from '../../assets/img/placeholder.jpg';
@@ -8,14 +8,17 @@ import styles from './CoursePage.module.scss';
 
 export const CoursePage = () => {
   const { id } = useParams();
+  const navigate = useNavigate();
 
   const token = localStorage.getItem('token');
 
-  const { data, isLoading, refetch } = useCourseQuery(id, token);
+  const { data, isLoading } = useCourseQuery(id, token);
 
   useEffect(() => {
-    refetch();
-  }, [id, refetch]);
+    if (!data) {
+      navigate('/log-in');
+    }
+  }, []);
 
   return (
     <div className={styles.page}>

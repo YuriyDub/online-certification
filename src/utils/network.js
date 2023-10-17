@@ -1,5 +1,5 @@
 import axios from 'axios';
-
+import { redirect } from 'react-router-dom';
 import { API_URL, COURSES_CARDS_URL } from '../constants';
 
 const instanceAxios = axios.create({

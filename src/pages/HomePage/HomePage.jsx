@@ -63,7 +63,7 @@ export const HomePage = () => {
                   key={c._id}
                   description={c.description}
                   onClick={() => {
-                    if (localStorage.getItem('token') !== null) navigate(`/courses/${c._id}`);
+                    navigate(`/courses/${c._id}`);
                   }}
                 />
               ))

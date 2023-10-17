@@ -24,6 +24,7 @@ export const fetchCourse = async (id, token) => {
     return response.data;
   } catch (error) {
     console.error('Fetch course error:', error);
+    return error.response;
   }
 };
 

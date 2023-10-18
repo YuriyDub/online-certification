@@ -9,6 +9,7 @@ import banner from '../../assets/img/banner1.jpg';
 import styles from './HomePage.module.scss';
 import { Pagination } from '../../components/Pagination/Pagination';
 import { useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 
 const categories = [
   'All',
@@ -29,12 +30,22 @@ export const HomePage = () => {
 
   const navigate = useNavigate();
 
+  const isAuth = useSelector((store) => store.auth.isAuth);
+
   useEffect(() => {
     refetch();
   }, [page, refetch]);
 
   const filterCourses = (courses = []) => {
     return category === 'All' ? courses : courses.filter((c) => c.category === category);
+  };
+
+  const toCourse = (id) => {
+    if (isAuth) {
+      navigate(`/courses/${id}`);
+    } else {
+      navigate(`/log-in`);
+    }
   };
 
   return (
@@ -62,9 +73,7 @@ export const HomePage = () => {
                   author={c.author}
                   key={c._id}
                   description={c.description}
-                  onClick={() => {
-                    navigate(`/courses/${c._id}`);
-                  }}
+                  onClick={() => toCourse(c._id)}
                 />
               ))
             )}

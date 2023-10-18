@@ -4,13 +4,16 @@ const authSlice = createSlice({
   name: 'auth',
   initialState: {
     token: null,
+    isAuth: false,
   },
   reducers: {
     setToken: (state, action) => {
       state.token = action.payload;
+      state.isAuth = Boolean(state.token);
     },
     clearToken: (state) => {
       state.token = null;
+      state.isAuth = Boolean(state.token);
     },
   },
 });

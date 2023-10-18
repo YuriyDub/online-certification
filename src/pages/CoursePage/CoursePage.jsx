@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
+import { useSelector } from 'react-redux';
 import useCourseQuery from '../../hooks/useCourseQuery';
 import placeholder from '../../assets/img/placeholder.jpg';
 import { Container } from '../../components/UI/Container';
@@ -9,8 +10,7 @@ import styles from './CoursePage.module.scss';
 export const CoursePage = () => {
   const { id } = useParams();
   const navigate = useNavigate();
-
-  const token = localStorage.getItem('token');
+  const token = useSelector((state) => state.auth.token);
 
   const { data, isLoading, isSuccess } = useCourseQuery(id, token);
 

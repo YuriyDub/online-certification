@@ -1,4 +1,8 @@
+import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { setToken } from '../../store/slices/authSlice';
 import { Button } from '../../components/UI/Button';
 import { Container } from '../../components/UI/Container';
 import { Input } from '../../components/UI/Input/Input';
@@ -14,19 +18,29 @@ export const LogInPage = () => {
     reset,
   } = useForm({ mode: 'onSubmit' });
 
+  const dispatch = useDispatch();
+
+  const isAuth = useSelector((store) => store.auth.isAuth);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate('/');
+    }
+  }, [isAuth, navigate]);
+
   const handleLogIn = async (username, password) => {
     try {
       const newToken = await signIn(username, password);
-      console.log(JSON.stringify(newToken));
-      localStorage.setItem('token', newToken.token);
+      dispatch(setToken(newToken.token));
     } catch (err) {
-      console.error(err);
+      alert(err);
     }
   };
 
   const submitHandler = (data) => {
     const { username, password } = data;
-
     handleLogIn(username, password);
     reset();
   };

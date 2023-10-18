@@ -1,4 +1,8 @@
 import { Controller, useForm } from 'react-hook-form';
+import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
+import { setToken } from '../../store/slices/authSlice';
 import { Button } from '../../components/UI/Button';
 import { Container } from '../../components/UI/Container';
 import { Input } from '../../components/UI/Input/Input';
@@ -14,10 +18,22 @@ export const SignUpPage = () => {
     reset,
   } = useForm({ mode: 'onSubmit' });
 
+  const dispatch = useDispatch();
+
+  const isAuth = useSelector((store) => store.auth.isAuth);
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if (isAuth) {
+      navigate('/');
+    }
+  }, [isAuth, navigate]);
+
   const handleSignUp = async (username, email, password) => {
     try {
       const newToken = await signUp(username, email, password);
-      localStorage.setItem('token', newToken.token);
+      dispatch(setToken(newToken.token));
     } catch (err) {
       alert(err);
     }
@@ -25,7 +41,6 @@ export const SignUpPage = () => {
 
   const submitHandler = (data) => {
     const { username, email, password } = data;
-
     handleSignUp(username, email, password);
     reset();
   };
@@ -40,10 +55,8 @@ export const SignUpPage = () => {
             control={control}
             rules={{
               required: 'username is required',
-              pattern: {
-                value: /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+.[a-zA-Z]{2,}$/,
-                message: 'incorrect email address',
-              },
+              minLength: { value: 2, message: 'Min length is 2 symbols' },
+              maxLength: { value: 15, message: 'Max length is 15 symbols' },
             }}
             defaultValue=""
             render={({ field }) => (
@@ -53,7 +66,7 @@ export const SignUpPage = () => {
                 onChange={field.onChange}
                 placeHolder="username"
                 label="username"
-                errorMessage={errors?.email?.message}
+                errorMessage={errors?.username?.message}
               />
             )}
           />

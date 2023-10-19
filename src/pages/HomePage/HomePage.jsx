@@ -26,7 +26,7 @@ export const HomePage = () => {
   const [category, setCategory] = useState('All');
   const [page, setPage] = useState(1);
 
-  const { data, isLoading, refetch } = useCoursesQuery(page);
+  const { data, isLoading, refetch } = useCoursesQuery(page, category);
 
   const navigate = useNavigate();
 
@@ -34,11 +34,7 @@ export const HomePage = () => {
 
   useEffect(() => {
     refetch();
-  }, [page, refetch]);
-
-  const filterCourses = (courses = []) => {
-    return category === 'All' ? courses : courses.filter((c) => c.category === category);
-  };
+  }, [page, category, refetch]);
 
   const toCourse = (id) => {
     if (isAuth) {
@@ -67,12 +63,15 @@ export const HomePage = () => {
             {isLoading ? (
               <CircleLoader />
             ) : (
-              filterCourses(data.courses).map((c) => (
+              data?.courses.map((c) => (
                 <CourseCard
                   title={c.title}
                   author={c.author}
                   key={c._id}
                   description={c.description}
+                  duration={c.duration}
+                  level={c.level}
+                  language={c.language}
                   onClick={() => toCourse(c._id)}
                 />
               ))

@@ -5,9 +5,12 @@ const instanceAxios = axios.create({
   baseURL: API_URL,
 });
 
-export const fetchCourses = async (page) => {
+export const fetchCourses = async (page, category) => {
   try {
-    const response = await instanceAxios.get(COURSES_CARDS_URL + `?page=${page}&limit=10`);
+    const response = await instanceAxios.get(
+      COURSES_CARDS_URL +
+        `${category === 'All' ? '?' : `?category=${category}&`}page=${page}&limit=10`,
+    );
     return response.data;
   } catch (error) {
     console.error('Fetch courses error:', error);

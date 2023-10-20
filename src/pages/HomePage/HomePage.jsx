@@ -60,6 +60,7 @@ export const HomePage = () => {
           <Categories categories={categories} setCategory={setCategory} category={category} />
           <Divider />
           <section className={styles.courses}>
+            <CourseCard />
             {isLoading ? (
               <CircleLoader />
             ) : (
@@ -71,7 +72,6 @@ export const HomePage = () => {
                   description={c.description}
                   duration={c.duration}
                   level={c.level}
-                  language={c.language}
                   onClick={() => toCourse(c._id)}
                 />
               ))

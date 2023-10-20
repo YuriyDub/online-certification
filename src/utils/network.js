@@ -3,6 +3,12 @@ import { API_URL, COURSES_CARDS_URL } from '../constants';
 
 const instanceAxios = axios.create({
   baseURL: API_URL,
+  withCredentials: true,
+});
+
+instanceAxios.interceptors.request.use((config) => {
+  config.headers.Authorization = `Bearer ${localStorage.getItem('persist:auth').accessToken}`;
+  return config;
 });
 
 export const fetchCourses = async (page, category) => {
@@ -37,7 +43,7 @@ export const signIn = async (username, password) => {
     return response.data;
   } catch (error) {
     console.error('Sign in error:', error);
-    throw error.response.data.error;
+    throw error.response.data.message;
   }
 };
 
@@ -47,6 +53,6 @@ export const signUp = async (username, email, password) => {
     return response.data;
   } catch (error) {
     console.error('Sign up error:', error);
-    throw error.response.data.error;
+    throw error.response.data.message;
   }
 };

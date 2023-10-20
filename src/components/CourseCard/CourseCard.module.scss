@@ -29,83 +29,72 @@
 			box-shadow: 0px 0px 5px var(--colors-shadow) inset;
 		}
 
-		.addInfo {
-			position: absolute;
-			display: flex;
-			justify-content: space-between;
-			gap: 5px;
-			margin: 10px 20px;
-			top: 0;
-			z-index: 1;
-
-			.level {
-				display: flex;
-				gap: 5px;
-				padding: 5px;
-				text-align: center;
-				align-items: center;
-				border-radius: var(--rad);
-				border: 1px solid var(--colors-line);
-				color: var(--colors-text-secondary);
-				font-size: var(--fs-lt);
-				background: var(--colors-gradient-primary);
-				background-size: 300% 300%;
-			}
-
-			.duration {
-				display: flex;
-				gap: 5px;
-				padding: 5px;
-				text-align: center;
-				align-items: center;
-				border-radius: var(--rad);
-				border: 1px solid var(--colors-line);
-				color: var(--colors-text-primary);
-				font-size: var(--fs-lt);
-				background: var(--colors-primary);
-
-				.icon {
-					height: 15px;
-					width: 15px;
-				}
-			}
-
-			.language {
-				display: flex;
-				gap: 5px;
-				padding: 5px;
-				text-align: center;
-				align-items: center;
-				border-radius: var(--rad);
-				border: 1px solid var(--colors-line);
-				color: var(--colors-text-primary);
-				font-size: var(--fs-lt);
-				background: var(--colors-primary);
-			}
-		}
-
 		.description {
 			position: absolute;
 			border-radius: 0px 0px 10px 10px;
 			top: -100px;
 			color: var(--colors-text);
-			border: 1px solid var(--colors-line);
+			border-bottom: 1px solid var(--colors-line);
+			border-left: 1px solid var(--colors-line);
+			border-right: 1px solid var(--colors-line);
 			backdrop-filter: blur(10px);
 			font-size: var(--fs-sm);
 			font-weight: var(--fw-md);
 			box-sizing: border-box;
-			padding: 50px 10px 10px 10px;
+			padding: 10px;
 			margin: 0px 10px;
 			z-index: 1;
 			opacity: 0;
 			transition: 0.2s all ease-in-out;
+
+			.addInfo {
+				display: flex;
+				gap: 5px;
+				margin-top: 10px;
+				bottom: 0;
+				z-index: 1;
+
+				.level {
+					display: flex;
+					gap: 5px;
+					padding: 5px;
+					text-align: center;
+					align-items: center;
+					border-radius: var(--rad);
+					border: 1px solid var(--colors-line);
+					color: var(--colors-text-secondary);
+					font-size: var(--fs-lt);
+					background: var(--colors-gradient-primary);
+					background-size: 300% 300%;
+					text-wrap: nowrap;
+				}
+
+				.duration {
+					display: flex;
+					gap: 5px;
+					padding: 5px;
+					text-align: center;
+					align-items: center;
+					border-radius: var(--rad);
+					border: 1px solid var(--colors-line);
+					color: var(--colors-text-primary);
+					font-size: var(--fs-lt);
+					background: var(--colors-primary);
+					text-wrap: nowrap;
+
+					.icon {
+						height: 15px;
+						width: 15px;
+					}
+				}
+			}
 		}
 	}
 
 	.info {
 		display: flex;
 		justify-content: space-between;
-		padding: 10px;
+		padding: 0px 10px 10px 10px;
 		user-select: none;
 
 		article {

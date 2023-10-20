@@ -60,7 +60,6 @@ export const HomePage = () => {
           <Categories categories={categories} setCategory={setCategory} category={category} />
           <Divider />
           <section className={styles.courses}>
-            <CourseCard />
             {isLoading ? (
               <CircleLoader />
             ) : (

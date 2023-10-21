@@ -12,6 +12,8 @@ import styles from './App.module.scss';
 const App = () => {
   const dispatch = useDispatch();
 
+  console.log(`Bearer ${JSON.parse(localStorage.getItem('persist:auth')).token}`);
+
   useEffect(() => {
     if (localStorage.getItem('persist:auth')) {
       dispatch(refreshAuth());

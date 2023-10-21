@@ -43,7 +43,7 @@ export const signIn = async (username, password) => {
     return response.data;
   } catch (error) {
     console.error('Sign in error:', error);
-    throw error.response.data.message;
+    throw error?.response?.data?.message;
   }
 };
 
@@ -53,6 +53,6 @@ export const signUp = async (username, email, password) => {
     return response.data;
   } catch (error) {
     console.error('Sign up error:', error);
-    throw error.response.data.message;
+    throw error?.response?.data?.message;
   }
 };

@@ -2,7 +2,7 @@ import { useEffect } from 'react';
 import { Controller, useForm } from 'react-hook-form';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { setToken } from '../../store/slices/authSlice';
+import { setAuth, setToken, setUser } from '../../store/slices/authSlice';
 import { Button } from '../../components/UI/Button';
 import { Container } from '../../components/UI/Container';
 import { Input } from '../../components/UI/Input/Input';
@@ -32,8 +32,10 @@ export const LogInPage = () => {
 
   const handleLogIn = async (username, password) => {
     try {
-      const newToken = await signIn(username, password);
-      dispatch(setToken(newToken.token));
+      const data = await signIn(username, password);
+      dispatch(setToken(data.accessToken));
+      dispatch(setAuth(true));
+      dispatch(setUser(data.user));
     } catch (err) {
       alert(err);
     }

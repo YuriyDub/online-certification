@@ -6,7 +6,7 @@ const authSlice = createSlice({
   initialState: {
     token: null,
     isAuth: false,
-    user: {},
+    user: null,
   },
   reducers: {
     setToken: (state, action) => {
@@ -22,23 +22,23 @@ const authSlice = createSlice({
       state.user = action.payload;
     },
     clearUser: (state) => {
-      state.user = {};
+      state.user = null;
     },
-    refreshAuth: () => {
+    refreshAuth: (state) => {
       const response = checkAuth();
       const data = response.data;
 
       if (data) {
-        setToken(data.accessToken);
-        setAuth(true);
-        setUser(data.user);
+        state.token = data.accessToken;
+        state.user = data.user;
+        state.isAuth = true;
       }
     },
 
-    clearAuth: () => {
-      clearToken();
-      clearUser();
-      setAuth(false);
+    clearAuth: (state) => {
+      state.token = null;
+      state.user = null;
+      state.isAuth = false;
     },
   },
 });

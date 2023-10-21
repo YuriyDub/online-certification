@@ -25,11 +25,10 @@ export const fetchCourses = async (page, category) => {
 
 export const fetchCourse = async (id) => {
   try {
-    const response = await instanceAxios.get(COURSES_CARDS_URL + `/?id=${id}`);
+    const response = await instanceAxios.get(COURSES_CARDS_URL + `/${id}`);
     return response.data;
   } catch (error) {
-    console.error('Fetch course error:', error);
-    return error.response;
+    console.error('Sign in error:', error?.response?.data?.message);
   }
 };
 

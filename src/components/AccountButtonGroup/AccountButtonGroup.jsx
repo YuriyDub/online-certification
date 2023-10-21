@@ -4,7 +4,7 @@ import { IconButton } from '../UI/IconButton';
 import { Button } from '../UI/Button';
 import { clearAuth } from '../../store/slices/authSlice';
 import { ReactComponent as AccountIcon } from '../../assets/icons/account.svg';
-import styles from './AccoundButtonGroup.module.scss';
+import styles from './AccountButtonGroup.module.scss';
 
 export const AccountButtonGroup = () => {
   const dispatch = useDispatch();

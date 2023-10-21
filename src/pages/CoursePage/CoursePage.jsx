@@ -12,13 +12,15 @@ export const CoursePage = () => {
   const navigate = useNavigate();
   const token = useSelector((state) => state.auth.token);
 
-  const { data, isLoading, isSuccess } = useCourseQuery(id, token);
+  const { data, isLoading } = useCourseQuery(id, token);
+
+  const isAuth = useSelector((store) => store.auth.isAuth);
 
   useEffect(() => {
-    if (isSuccess && data.status === 401) {
+    if (!isAuth) {
       navigate('/log-in');
     }
-  }, [data, navigate, isSuccess]);
+  }, [isAuth, navigate]);
 
   return (
     <div className={styles.page}>

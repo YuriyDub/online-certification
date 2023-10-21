@@ -1,4 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
+import { checkAuth } from '../../utils/network';
 
 const authSlice = createSlice({
   name: 'auth',
@@ -23,8 +24,18 @@ const authSlice = createSlice({
     clearUser: (state) => {
       state.user = {};
     },
+    refreshAuth: () => {
+      const response = checkAuth();
+      const data = response.data;
+
+      if (data) {
+        setToken(data.accessToken);
+        setAuth(true);
+        setUser(data.user);
+      }
+    },
   },
 });
 
-export const { setToken, clearToken, setAuth, setUser, clearUser } = authSlice.actions;
+export const { setToken, clearToken, setAuth, setUser, clearUser, refreshAuth } = authSlice.actions;
 export default authSlice.reducer;

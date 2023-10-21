@@ -31,13 +31,11 @@ export const LogInPage = () => {
   }, [isAuth, navigate]);
 
   const handleLogIn = async (username, password) => {
-    try {
-      const data = await signIn(username, password);
+    const data = await signIn(username, password);
+    if (data) {
       dispatch(setToken(data.accessToken));
       dispatch(setAuth(true));
       dispatch(setUser(data.user));
-    } catch (err) {
-      alert(err);
     }
   };
 

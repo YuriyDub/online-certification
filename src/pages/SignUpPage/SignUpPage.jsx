@@ -31,13 +31,11 @@ export const SignUpPage = () => {
   }, [isAuth, navigate]);
 
   const handleSignUp = async (username, email, password) => {
-    try {
-      const data = await signUp(username, email, password);
+    const data = await signUp(username, email, password);
+    if (data) {
       dispatch(setToken(data.accessToken));
       dispatch(setAuth(true));
       dispatch(setUser(data.user));
-    } catch (err) {
-      alert(err);
     }
   };
 

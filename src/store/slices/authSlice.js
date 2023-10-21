@@ -34,8 +34,15 @@ const authSlice = createSlice({
         setUser(data.user);
       }
     },
+
+    clearAuth: () => {
+      clearToken();
+      clearUser();
+      setAuth(false);
+    },
   },
 });
 
-export const { setToken, clearToken, setAuth, setUser, clearUser, refreshAuth } = authSlice.actions;
+export const { setToken, clearToken, setAuth, setUser, clearUser, refreshAuth, clearAuth } =
+  authSlice.actions;
 export default authSlice.reducer;

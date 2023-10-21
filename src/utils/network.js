@@ -7,7 +7,8 @@ const instanceAxios = axios.create({
 });
 
 instanceAxios.interceptors.request.use((config) => {
-  config.headers.Authorization = `Bearer ${JSON.parse(localStorage.getItem('persist:auth')).token}`;
+  const token = JSON.parse(localStorage.getItem('persist:auth')).token;
+  config.headers.Authorization = 'Bearer' + token;
   return config;
 });
 

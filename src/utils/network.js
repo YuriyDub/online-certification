@@ -12,6 +12,24 @@ instanceAxios.interceptors.request.use((config) => {
   return config;
 });
 
+instanceAxios.interceptors.response.use(
+  (config) => {
+    return config;
+  },
+  async (error) => {
+    const originalRequest = error.config;
+    if (error.response.status === 401) {
+      try {
+        const response = await axios.get(`${API_URL}/refresh`, { withCredentials: true });
+        localStorage.setItem('persist:auth', { accessToken: response.data.accessToken });
+        return instanceAxios.request(originalRequest);
+      } catch {
+        console.error('User is not authorized');
+      }
+    }
+  },
+);
+
 export const fetchCourses = async (page, category) => {
   try {
     const response = await instanceAxios.get(
@@ -21,6 +39,7 @@ export const fetchCourses = async (page, category) => {
     return response.data;
   } catch (error) {
     console.error('Fetch courses error:', error);
+    return false;
   }
 };
 
@@ -29,7 +48,8 @@ export const fetchCourse = async (id) => {
     const response = await instanceAxios.get(COURSES_CARDS_URL + `/${id}`);
     return response.data;
   } catch (error) {
-    console.error('Sign in error:', error?.response?.data?.message);
+    console.error('FetchCourse error:', error?.response?.data?.message);
+    return false;
   }
 };
 
@@ -51,10 +71,18 @@ export const signUp = async (username, email, password) => {
   }
 };
 
+export const resetAuth = async () => {
+  try {
+    instanceAxios.post('/signout');
+  } catch (error) {
+    console.error('Sign out error:', error?.response?.data?.message);
+  }
+};
+
 export const checkAuth = async () => {
   try {
     const response = await axios.get(`${API_URL}/refresh`, { withCredentials: true });
-    return response;
+    return response.data;
   } catch (error) {
     console.error('Refresh error:', error?.response?.data?.message);
   }

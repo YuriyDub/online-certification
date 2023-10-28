@@ -1,16 +1,16 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
+import { logOut } from '../../store/slices/authSlice';
 import { IconButton } from '../UI/IconButton';
 import { Button } from '../UI/Button';
-import { clearAuth } from '../../store/slices/authSlice';
 import { ReactComponent as AccountIcon } from '../../assets/icons/account.svg';
 import styles from './AccountButtonGroup.module.scss';
 
 export const AccountButtonGroup = () => {
   const dispatch = useDispatch();
 
-  const logOut = () => {
-    dispatch(clearAuth());
+  const resetAuth = () => {
+    dispatch(logOut());
   };
 
   return (
@@ -18,7 +18,7 @@ export const AccountButtonGroup = () => {
       <IconButton>
         <AccountIcon />
       </IconButton>
-      <Button onClick={logOut}>Log out</Button>
+      <Button onClick={resetAuth}>Log out</Button>
     </div>
   );
 };

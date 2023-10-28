@@ -13,9 +13,7 @@ const App = () => {
   const dispatch = useDispatch();
 
   useEffect(() => {
-    if (localStorage.getItem('persist:auth')) {
-      dispatch(refreshAuth());
-    }
+    dispatch(refreshAuth());
   }, [dispatch]);
 
   return (
@@ -24,8 +22,8 @@ const App = () => {
       <Routes>
         <Route index element={<HomePage />} />
         <Route path="/courses/:id" element={<CoursePage />} />
-        <Route path="/log-in" element={<LogInPage />} />
-        <Route path="/sign-up" element={<SignUpPage />} />
+        <Route path="/login" element={<LogInPage />} />
+        <Route path="/signup" element={<SignUpPage />} />
       </Routes>
     </div>
   );

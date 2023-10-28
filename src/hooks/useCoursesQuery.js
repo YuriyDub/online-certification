@@ -6,6 +6,9 @@ const useCoursesQuery = (page, category) => {
     queryFn: () => fetchCourses(page, category),
     queryKey: ['courses'],
     staleTime: 1000 * 5,
+    onError: () => {
+      window.location.href = '/signup';
+    },
   });
 };
 

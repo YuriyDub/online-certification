@@ -1,5 +1,4 @@
-import { useEffect } from 'react';
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import useCourseQuery from '../../hooks/useCourseQuery';
 import placeholder from '../../assets/img/placeholder.jpg';
@@ -9,18 +8,9 @@ import styles from './CoursePage.module.scss';
 
 export const CoursePage = () => {
   const { id } = useParams();
-  const navigate = useNavigate();
   const token = useSelector((state) => state.auth.token);
 
   const { data, isLoading } = useCourseQuery(id, token);
-
-  const isAuth = useSelector((store) => store.auth.isAuth);
-
-  useEffect(() => {
-    if (!isAuth) {
-      navigate('/log-in');
-    }
-  }, [isAuth, navigate]);
 
   return (
     <div className={styles.page}>
@@ -34,9 +24,11 @@ export const CoursePage = () => {
               <section className={styles.description}>
                 <h1 className={styles.title}>{data.title}</h1>
                 <p className={styles.details}>{data.description}</p>
-                <span className={styles.author}>{data.author}</span>
               </section>
-              <img src={placeholder} alt="placeholder" className={styles.preview} />
+              <section>
+                <img src={placeholder} alt="placeholder" className={styles.preview} />
+                <span className={styles.author}>{data.instructor.name}</span>
+              </section>
             </div>
           </>
         )}

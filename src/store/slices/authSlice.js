@@ -1,5 +1,13 @@
-import { createSlice } from '@reduxjs/toolkit';
-import { checkAuth } from '../../utils/network';
+import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
+import { checkAuth, resetAuth } from '../../utils/network';
+
+export const refreshAuth = createAsyncThunk('auth/refreshAuth', async () => {
+  return await checkAuth();
+});
+
+export const logOut = createAsyncThunk('auth/logOut', async () => {
+  return await resetAuth();
+});
 
 const authSlice = createSlice({
   name: 'auth',
@@ -24,18 +32,16 @@ const authSlice = createSlice({
     clearUser: (state) => {
       state.user = null;
     },
-    refreshAuth: (state) => {
-      const response = checkAuth();
-      const data = response.data;
-
-      if (data) {
-        state.token = data.accessToken;
-        state.user = data.user;
+  },
+  extraReducers: {
+    [refreshAuth.fulfilled]: (state, action) => {
+      if (action.payload) {
+        state.token = action.payload.accessToken;
+        state.user = action.payload.user;
         state.isAuth = true;
       }
     },
-
-    clearAuth: (state) => {
+    [logOut.fulfilled]: (state) => {
       state.token = null;
       state.user = null;
       state.isAuth = false;
@@ -43,6 +49,5 @@ const authSlice = createSlice({
   },
 });
 
-export const { setToken, clearToken, setAuth, setUser, clearUser, refreshAuth, clearAuth } =
-  authSlice.actions;
+export const { setToken, clearToken, setAuth, setUser, clearUser } = authSlice.actions;
 export default authSlice.reducer;

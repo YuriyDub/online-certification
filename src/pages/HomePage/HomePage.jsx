@@ -9,7 +9,6 @@ import banner from '../../assets/img/banner1.jpg';
 import styles from './HomePage.module.scss';
 import { Pagination } from '../../components/Pagination/Pagination';
 import { useNavigate } from 'react-router-dom';
-import { useSelector } from 'react-redux';
 
 const categories = [
   'All',
@@ -30,19 +29,11 @@ export const HomePage = () => {
 
   const navigate = useNavigate();
 
-  const isAuth = useSelector((store) => store.auth.isAuth);
-
   useEffect(() => {
     refetch();
   }, [page, category, refetch]);
 
-  const toCourse = (id) => {
-    if (isAuth) {
-      navigate(`/courses/${id}`);
-    } else {
-      navigate(`/log-in`);
-    }
-  };
+  const toCourse = (id) => navigate(`/courses/${id}`);
 
   return (
     <div className={styles.page}>

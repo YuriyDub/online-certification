@@ -1,18 +1,20 @@
 .page {
 	display: flex;
 	flex-direction: column;
+	align-items: center;
 	width: 100%;
 	margin-top: 100px;
 
 	.course {
 		display: grid;
-		grid-template-columns: 3fr 1fr;
+		grid-template-columns: 5fr 2fr;
 		margin: 0px 10px 0px 10px;
 
-		.description {
+		.details {
 			display: flex;
 			flex-direction: column;
-			flex-grow: 1;
+			justify-content: flex-start;
+			gap: 5px;
 			margin: 20px;
 
 			.title {
@@ -21,17 +23,67 @@
 				text-transform: uppercase;
 			}
 
-			.details {
+			.description {
 				margin-top: 5px;
-				flex-grow: 1;
+				// flex-grow: 1;
 				font-size: var(--fs-sm);
 				font-weight: var(--fw-md);
 				text-transform: lowercase;
 			}
 
+			.chips {
+				overflow: auto;
+				display: flex;
+				margin-top: 5px;
+				gap: 4px;
+				.chip {
+					text-wrap: nowrap;
+					font-size: var(--fs-lt);
+					padding: 8px;
+					background-color: var(--colors-secondary);
+					border-radius: var(--rad);
+				}
+			}
+
+			.lessons {
+				display: flex;
+				margin: 0 5px;
+				margin-top: 10px;
+				margin-bottom: auto;
+				flex-direction: column;
+				gap: 10px;
+				.lesson {
+					display: flex;
+					justify-content: space-between;
+					align-items: center;
+					box-sizing: border-box;
+					border-bottom: 1px solid var(--colors-line);
+					padding-bottom: 5px;
+					padding-left: 5px;
+					background-color: var(--colors-ui-base-primary);
+					background-size: 300% 300%;
+					cursor: pointer;
+
+					.description {
+						color: var(--colors-text-primary);
+						h2 {
+							font-weight: var(--fw-b);
+						}
+						p {
+							font-size: var(--fs-lt);
+						}
+					}
+					.duration {
+						text-wrap: nowrap;
+						color: var(--colors-text-primary);
+						font-size: var(--fs-lt);
+					}
+				}
+			}
+
 			.author {
 				display: block;
-				justify-self: end;
+				margin-top: auto;
 				margin-top: 5px;
 				text-align: end;
 			}
@@ -46,10 +98,31 @@
 		}
 	}
 
-	@media (max-width: 1240px) {
+	@media (max-width: 1280px) {
+		.course {
+			grid-template-columns: 3fr 2fr;
+		}
+	}
+
+	@media (max-width: 900px) {
 		.course {
 			display: flex;
 			flex-direction: column-reverse;
+			.details{
+				margin: 5px;
+			}
 		}
+	}
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
 	}
 }

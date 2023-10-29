@@ -13,12 +13,11 @@ instanceAxios.interceptors.request.use((config) => {
 });
 
 instanceAxios.interceptors.response.use(
-  (config) => {
-    return config;
-  },
+  (config) => config,
   async (error) => {
     const originalRequest = error.config;
-    if (error.response.status === 401) {
+    if (error.response.status == 401 && !error.config._isRetry) {
+      originalRequest._isRetry = true;
       try {
         const response = await axios.get(`${API_URL}/refresh`, { withCredentials: true });
         localStorage.setItem('persist:auth', { accessToken: response.data.accessToken });
@@ -27,6 +26,7 @@ instanceAxios.interceptors.response.use(
         console.error('User is not authorized');
       }
     }
+    throw error;
   },
 );
 
@@ -49,7 +49,7 @@ export const fetchCourse = async (id) => {
     return response.data;
   } catch (error) {
     console.error('FetchCourse error:', error?.response?.data?.message);
-    return false;
+    throw new Error('FetchCourse error');
   }
 };
 

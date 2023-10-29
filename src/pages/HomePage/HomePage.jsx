@@ -1,5 +1,4 @@
 import { useEffect, useState } from 'react';
-import CircleLoader from 'react-spinners/CircleLoader';
 import useCoursesQuery from '../../hooks/useCoursesQuery';
 import { Container } from '../../components/UI/Container';
 import { Divider } from '../../components/UI/Divider';
@@ -9,6 +8,7 @@ import banner from '../../assets/img/banner1.jpg';
 import styles from './HomePage.module.scss';
 import { Pagination } from '../../components/Pagination/Pagination';
 import { useNavigate } from 'react-router-dom';
+import { Loader } from '../../components/UI/Loader';
 
 const categories = [
   'All',
@@ -25,7 +25,7 @@ export const HomePage = () => {
   const [category, setCategory] = useState('All');
   const [page, setPage] = useState(1);
 
-  const { data, isLoading, refetch } = useCoursesQuery(page, category);
+  const { data, isLoading, refetch, isFetching } = useCoursesQuery(page, category);
 
   const navigate = useNavigate();
 
@@ -34,6 +34,12 @@ export const HomePage = () => {
   }, [page, category, refetch]);
 
   const toCourse = (id) => navigate(`/courses/${id}`);
+
+  const changeCategory = (category) => {
+    if (!isFetching) {
+      setCategory(category);
+    }
+  };
 
   return (
     <div className={styles.page}>
@@ -48,31 +54,33 @@ export const HomePage = () => {
       <section className={styles.coursesBackground}>
         <Container>
           <h1 className={styles.title}>Recommended</h1>
-          <Categories categories={categories} setCategory={setCategory} category={category} />
-          <Divider />
-          <section className={styles.courses}>
-            {isLoading ? (
-              <CircleLoader />
-            ) : (
-              data?.courses.map((c) => (
-                <CourseCard
-                  title={c.title}
-                  author={c.author}
-                  key={c._id}
-                  description={c.description}
-                  duration={c.duration}
-                  level={c.level}
-                  onClick={() => toCourse(c._id)}
-                />
-              ))
-            )}
-          </section>
-          <Pagination
-            isNext={data?.accessNextPage}
-            isPrev={data?.accessPreviousPage}
-            page={page}
-            setPage={setPage}
-          />
+          <Categories categories={categories} setCategory={changeCategory} category={category} />
+          {isLoading ? (
+            <Loader className={styles.loader} />
+          ) : (
+            <>
+              <Divider />
+              <section className={styles.courses}>
+                {data?.courses.map((c) => (
+                  <CourseCard
+                    title={c.title}
+                    author={c.instructor.name}
+                    key={c._id}
+                    description={c.description}
+                    duration={c.duration}
+                    level={c.level}
+                    onClick={() => toCourse(c._id)}
+                  />
+                ))}
+              </section>
+              <Pagination
+                isNext={data?.accessNextPage}
+                isPrev={data?.accessPreviousPage}
+                page={page}
+                setPage={setPage}
+              />
+            </>
+          )}
         </Container>
       </section>
     </div>

@@ -1,23 +1,30 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import useCourseQuery from '../../hooks/useCourseQuery';
 import placeholder from '../../assets/img/placeholder.jpg';
 import { Container } from '../../components/UI/Container';
 import { Divider } from '../../components/UI/Divider';
 import styles from './CoursePage.module.scss';
+import { Loader } from '../../components/UI/Loader';
 
 export const CoursePage = () => {
   const { id } = useParams();
   const token = useSelector((state) => state.auth.token);
 
-  const { data, isLoading } = useCourseQuery(id, token);
+  const { data, isLoading, isError } = useCourseQuery(id, token);
+
+  const navigate = useNavigate();
+
+  if (isError) {
+    navigate('/login');
+  }
 
   return (
     <div className={styles.page}>
       <Container>
         <Divider />
         {isLoading ? (
-          <p>loading</p>
+          <Loader className={styles.loader} variant={'dark'} />
         ) : (
           <>
             <div className={styles.course}>

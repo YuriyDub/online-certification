@@ -1,8 +1,12 @@
 .categories {
 	box-sizing: border-box;
-	background-color: var(--colors-primary);
 	border: 1px solid var(--colors-ui-shadow-primary);
-
+	background-color: var(--colors-ui-base-primary);
+	box-shadow:
+		0px 0px 5px var(--colors-ui-shadow-primary) inset,
+		0px 0px 5px var(--colors-shadow);
+	border: 2px solid var(--colors-ui-base-primary);
+	backdrop-filter: blur(10px);
 	border-radius: var(--rad);
 	margin: 10px 0px;
 	display: flex;
@@ -21,17 +25,13 @@
 	box-sizing: border-box;
 	padding: 0px 15px 0px 15px;
 	height: 50px;
-	color: var(--colors-text-primary);
-	background-color: var(--colors-ui-base-secondary);
-	box-shadow:
-		0px 0px 5px var(--colors-ui-shadow-secondary) inset,
-		0px 0px 5px var(--colors-shadow);
-	border: 2px solid var(--colors-ui-shadow-secondary);
+	color: var(--colors-text-secondary);
 	font-size: var(--fs-sm);
 	font-weight: var(--fw-sb);
 	border-radius: var(--rad);
 	transition: 0.1s all ease-in-out;
 	user-select: none;
+	text-wrap: nowrap;
 	cursor: pointer;
 
 	&:hover {
@@ -44,6 +44,7 @@
 }
 
 .active {
+	color: var(--colors-text-primary);
 	background-color: var(--colors-primary);
 	box-shadow:
 		0px 0px 1px var(--colors-ui-shadow-secondary) inset,

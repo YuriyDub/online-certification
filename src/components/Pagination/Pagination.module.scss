@@ -12,6 +12,9 @@
 		background-color: var(--colors-primary);
 		padding: 5px;
 		border-radius: var(--rad);
+		box-shadow:
+			0px 0px 1px var(--colors-ui-shadow-secondary) inset,
+			0px 0px 15px var(--colors-shadow);
 		.number {
 			display: flex;
 			flex-shrink: 0;

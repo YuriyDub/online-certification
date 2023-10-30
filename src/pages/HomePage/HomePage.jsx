@@ -55,7 +55,7 @@ export const HomePage = () => {
         <Container>
           <h1 className={styles.title}>Recommended</h1>
           <Categories categories={categories} setCategory={changeCategory} category={category} />
-          {isLoading ? (
+          {isFetching ? (
             <Loader className={styles.loader} />
           ) : (
             <>

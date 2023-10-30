@@ -13,15 +13,17 @@ export const Pagination = ({ isPrev, isNext, page, setPage }) => {
 
   return (
     <div className={styles.pagination}>
-      <Divider />
-      <Button inactive={!isPrev} onClick={prevPage}>
-        prev
-      </Button>
-      <div className={styles.number}>{page}</div>
-      <Button inactive={!isNext} onClick={nextPage}>
-        next
-      </Button>
-      <Divider />
+      <Divider variant="horizontal solid" />
+      <div className={styles.display}>
+        <Button inactive={!isPrev} onClick={prevPage} variant="inverse">
+          prev
+        </Button>
+        <div className={styles.number}>{page}</div>
+        <Button inactive={!isNext} onClick={nextPage} variant="inverse">
+          next
+        </Button>
+      </div>
+      <Divider variant="solid" />
     </div>
   );
 };

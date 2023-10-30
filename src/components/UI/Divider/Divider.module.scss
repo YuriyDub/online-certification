@@ -5,15 +5,15 @@
 
 .horizontal {
 	margin: 10px 0px;
-	height: 1px;
 	width: 100%;
-	border-top: 2px dotted var(--colors-line);
+	border: none;
+	border-top: 1px solid var(--colors-line);
 }
 
 .vertical {
 	display: block;
 	margin: 0px 10px;
-	width: 1px;
 	height: auto;
-	border-left: 2px dashed var(--colors-line);
+	border: none;
+	border-left: 1px solid var(--colors-line);
 }

@@ -29,7 +29,6 @@
 
 			.description {
 				margin-top: 5px;
-				// flex-grow: 1;
 				font-size: var(--fs-sm);
 				font-weight: var(--fw-md);
 				text-transform: lowercase;
@@ -41,6 +40,7 @@
 				margin-top: 5px;
 				gap: 4px;
 				.chip {
+					user-select: none;
 					text-wrap: nowrap;
 					font-size: var(--fs-lt);
 					padding: 8px;
@@ -55,17 +55,21 @@
 				margin-top: 10px;
 				margin-bottom: auto;
 				flex-direction: column;
+				overflow: auto;
+				padding: 15px;
 				gap: 10px;
+
 				.lesson {
 					display: flex;
 					justify-content: space-between;
 					align-items: center;
 					box-sizing: border-box;
 					border-bottom: 1px solid var(--colors-line);
-					padding-bottom: 5px;
-					padding-left: 5px;
+					padding: 5px 10px;
 					background-color: var(--colors-ui-base-primary);
 					background-size: 300% 300%;
+					user-select: none;
+					transition: all 0.1s ease-in-out;
 					cursor: pointer;
 
 					.description {
@@ -81,6 +85,15 @@
 						text-wrap: nowrap;
 						color: var(--colors-text-primary);
 						font-size: var(--fs-lt);
+					}
+
+					&:hover {
+						background-color: var(--colors-primary);
+						box-shadow: 0px 5px 10px 1px var(--colors-shadow);
+					}
+
+					&:active {
+						background-color: var(--colors-secondary);
 					}
 				}
 			}
@@ -112,7 +125,7 @@
 		.course {
 			display: flex;
 			flex-direction: column-reverse;
-			.details{
+			.details {
 				margin: 5px;
 			}
 		}

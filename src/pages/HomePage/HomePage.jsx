@@ -25,7 +25,7 @@ export const HomePage = () => {
   const [category, setCategory] = useState('All');
   const [page, setPage] = useState(1);
 
-  const { data, isLoading, refetch, isFetching } = useCoursesQuery(page, category);
+  const { data, refetch, isFetching } = useCoursesQuery(page, category);
 
   const navigate = useNavigate();
 

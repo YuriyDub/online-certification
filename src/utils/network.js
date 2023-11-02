@@ -30,11 +30,15 @@ instanceAxios.interceptors.response.use(
   },
 );
 
-export const fetchCourses = async (page, category) => {
+export const fetchCourses = async (page, category, searchLine) => {
   try {
     const response = await instanceAxios.get(
       COURSES_CARDS_URL +
-        `${category === 'All' ? '?' : `?category=${category}&`}page=${page}&limit=10`,
+        `${
+          category === 'All'
+            ? `${searchLine && '/search'}?`
+            : `${searchLine && '/search'}?category=${category}&`
+        }page=${page}&limit=10${searchLine && `&query=${searchLine}`}`,
     );
     return response.data;
   } catch (error) {
@@ -45,7 +49,7 @@ export const fetchCourses = async (page, category) => {
 
 export const fetchCourse = async (id) => {
   try {
-    const response = await instanceAxios.get(COURSES_CARDS_URL + `/${id}`);
+    const response = await instanceAxios.get(COURSES_CARDS_URL + `/id/${id}`);
     return response.data;
   } catch (error) {
     console.error('FetchCourse error:', error?.response?.data?.message);

@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 import useCoursesQuery from '../../hooks/useCoursesQuery';
 import { Container } from '../../components/UI/Container';
 import { Divider } from '../../components/UI/Divider';
@@ -9,6 +9,9 @@ import styles from './HomePage.module.scss';
 import { Pagination } from '../../components/Pagination/Pagination';
 import { useNavigate } from 'react-router-dom';
 import { Loader } from '../../components/UI/Loader';
+import { useDispatch, useSelector } from 'react-redux';
+import { setCategory, setPage } from '../../store/slices/homeSlice';
+import { useDebounce } from '../../hooks/useDebounce';
 
 const categories = [
   'All',
@@ -22,22 +25,34 @@ const categories = [
 ];
 
 export const HomePage = () => {
-  const [category, setCategory] = useState('All');
-  const [page, setPage] = useState(1);
+  const { page, category } = useSelector((state) => state.home);
 
-  const { data, refetch, isFetching } = useCoursesQuery(page, category);
+  const searchLine = useDebounce(
+    useSelector((state) => state.home.searchLine),
+    500,
+  );
 
-  const navigate = useNavigate();
+  const { data, refetch, isFetching } = useCoursesQuery(page, category, searchLine);
 
   useEffect(() => {
     refetch();
-  }, [page, category, refetch]);
+  }, [category, page, searchLine, refetch]);
+
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   const toCourse = (id) => navigate(`/courses/${id}`);
 
   const changeCategory = (category) => {
     if (!isFetching) {
-      setCategory(category);
+      dispatch(setCategory(category));
+    }
+  };
+
+  const changePage = (page) => {
+    if (!isFetching) {
+      dispatch(setPage(page));
     }
   };
 
@@ -77,7 +92,7 @@ export const HomePage = () => {
                 isNext={data?.accessNextPage}
                 isPrev={data?.accessPreviousPage}
                 page={page}
-                setPage={setPage}
+                setPage={changePage}
               />
             </>
           )}

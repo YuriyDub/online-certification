@@ -75,19 +75,32 @@ export const HomePage = () => {
           ) : (
             <>
               <Divider />
-              <section className={styles.courses}>
-                {data?.courses.map((c) => (
-                  <CourseCard
-                    title={c.title}
-                    author={c.instructor.name}
-                    key={c._id}
-                    description={c.description}
-                    duration={c.duration}
-                    level={c.level}
-                    onClick={() => toCourse(c._id)}
-                  />
-                ))}
-              </section>
+              {Array.isArray(data?.courses) ? (
+                <h2
+                  style={{
+                    textAlign: 'center',
+                    marginLeft: 'auto',
+                    marginRight: 'auto',
+                    margin: '200px',
+                    color: 'var(--colors-text-secondary)',
+                  }}>
+                  Nothing found...
+                </h2>
+              ) : (
+                <section className={styles.courses}>
+                  {data?.courses.map((c) => (
+                    <CourseCard
+                      title={c.title}
+                      author={c.instructor.name}
+                      key={c._id}
+                      description={c.description}
+                      duration={c.duration}
+                      level={c.level}
+                      onClick={() => toCourse(c._id)}
+                    />
+                  ))}
+                </section>
+              )}
               <Pagination
                 isNext={data?.accessNextPage}
                 isPrev={data?.accessPreviousPage}

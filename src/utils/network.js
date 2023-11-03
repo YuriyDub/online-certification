@@ -36,9 +36,9 @@ export const fetchCourses = async (page, category, searchLine) => {
       COURSES_CARDS_URL +
         `${
           category === 'All'
-            ? `${searchLine && '/search'}?`
-            : `${searchLine && '/search'}?category=${category}&`
-        }page=${page}&limit=10${searchLine && `&query=${searchLine}`}`,
+            ? '?'
+            : `?category=${category}&`
+        }page=${page}&limit=10${searchLine && `&search=${searchLine}`}`,
     );
     return response.data;
   } catch (error) {

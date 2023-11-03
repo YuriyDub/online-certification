@@ -75,7 +75,7 @@ export const HomePage = () => {
           ) : (
             <>
               <Divider />
-              {Array.isArray(data?.courses) ? (
+              {!data?.courses?.length ? (
                 <h2
                   style={{
                     textAlign: 'center',

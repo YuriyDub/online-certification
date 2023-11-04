@@ -5,6 +5,7 @@ import { IconButton } from '../UI/IconButton';
 import { Button } from '../UI/Button';
 import { ReactComponent as AccountIcon } from '../../assets/icons/account.svg';
 import styles from './AccountButtonGroup.module.scss';
+import { Link } from 'react-router-dom';
 
 export const AccountButtonGroup = () => {
   const dispatch = useDispatch();
@@ -15,9 +16,11 @@ export const AccountButtonGroup = () => {
 
   return (
     <div className={styles.group}>
-      <IconButton>
-        <AccountIcon />
-      </IconButton>
+      <Link to="/account">
+        <IconButton>
+          <AccountIcon />
+        </IconButton>
+      </Link>
       <Button onClick={resetAuth}>Log out</Button>
     </div>
   );

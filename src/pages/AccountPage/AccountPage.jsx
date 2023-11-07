@@ -5,6 +5,8 @@ import placeholder from '../../assets/img/placeholder.jpg';
 import styles from './AccountPage.module.scss';
 import { useEffect } from 'react';
 import { getProfile } from '../../store/slices/authSlice';
+import { Avatar } from '../../components/UI/Avatar';
+import { EnrolledCourseCard } from '../../components/EnrolledCourseCard';
 
 export const AccountPage = () => {
   const dispatch = useDispatch();
@@ -18,10 +20,8 @@ export const AccountPage = () => {
   return (
     <div className={styles.page}>
       <Container>
-        <div className={styles.avatar}>
-          <img src={placeholder} alt="avatar" />
-        </div>
-        <h1 className={styles.title}>Hello {user ? 'User' : user?.username}!</h1>
+        <Avatar />
+        <h1 className={styles.title}>Hello {user ? user?.username : 'User'}!</h1>
         <Divider />
         <h2 className={styles.subTitle}>Profile:</h2>
         <ul className={styles.profile}>
@@ -41,31 +41,21 @@ export const AccountPage = () => {
             city: <span>{user.city ? user.city : '*not identified'}</span>
           </li>
         </ul>
-        <Divider />
-        <h2 className={styles.subTitle}>Your Courses:</h2>
-        <div className={styles.courses}>
-          <div className={styles.course}>
-            <img src={placeholder} alt="Course" />
-            <div className={styles.details}>
-              <h3 className={styles.courseTitle}>Professional React and Redux Tool Kit</h3>
-              <div className={styles.progressBar}>
-                <div className={styles.progress}></div>
-              </div>
-              <div className={styles.accuracy}>Accuracy 100%</div>
-            </div>
-          </div>
-          <div className={styles.course}>
-            <img src={placeholder} alt="Course" />
-            <div className={styles.details}>
-              <h3 className={styles.courseTitle}>State Managing in React</h3>
-              <div className={styles.progressBar}>
-                <div className={styles.progress}></div>
-              </div>
-              <div className={styles.accuracy}>Accuracy 90%</div>
-            </div>
-          </div>
-        </div>
       </Container>
+      <section className={styles.coursesSection}>
+        <Container>
+          <Divider />
+          <h2 className={styles.subTitle} style={{ color: 'var(--colors-text-secondary)' }}>
+            Your Courses:
+          </h2>
+          <Divider />
+          <div className={styles.courses}>
+            <EnrolledCourseCard />
+            <EnrolledCourseCard />
+            <EnrolledCourseCard />
+          </div>
+        </Container>
+      </section>
     </div>
   );
 };

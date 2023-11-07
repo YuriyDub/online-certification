@@ -5,22 +5,6 @@
 	width: 100%;
 	margin-top: 150px;
 
-	.avatar {
-		display: flex;
-		width: 160px;
-		height: 160px;
-		overflow: hidden;
-		border-radius: 100px;
-		align-items: center;
-		margin-left: auto;
-		margin-right: auto;
-		box-shadow: 0px 0px 10px var(--colors-shadow);
-
-		img {
-			width: 100%;
-		}
-	}
-
 	.title {
 		margin-top: 25px;
 		font-size: var(--fs-bg);
@@ -52,60 +36,31 @@
 		text-align: end;
 	}
 
+	.coursesSection {
+		background: var(--colors-gradient-primary);
+		background-size: 500% 500%;
+		animation: gradient 60s ease infinite;
+		width: 100%;
+	}
+
 	.courses {
 		display: grid;
-		gap: 15px;
-		margin-top: 20px;
+		gap: 20px 25px;
+		margin-top: 10px;
+		margin-bottom: 100px;
 		padding: 10px;
 		grid-template-columns: 1fr 1fr;
-		.course {
-			display: flex;
-			gap: 5px;
-			overflow: hidden;
-			border-radius: var(--rad-second);
-			padding: 5px;
-			background-color: var(--colors-primary);
-			box-shadow: 0px 0px 10px var(--colors-shadow);
-			img {
-				max-height: 200px;
-				border-radius: 10px 0px 0px 10px;
-			}
+	}
+}
 
-			.details {
-				border: 1px solid var(--colors-line);
-				border-radius: 0px 10px 10px 0px;
-				padding: 10px;
-				flex-grow: 1;
-
-				.courseTitle {
-					font-size: var(--fs-sm);
-					font-weight: var(--fw-b);
-				}
-				.progressBar {
-					display: flex;
-					align-items: center;
-					justify-content: center;
-					box-sizing: border-box;
-					padding: 4px;
-					margin-top: 10px;
-					box-shadow: 0px 0px 10px var(--colors-shadow) inset;
-					width: 100%;
-					border-radius: var(--rad-second);
-
-					.progress {
-						width: 100%;
-						height: 5px;
-						background-color: rgb(101, 169, 0);
-						border-radius: var(--rad-second);
-					}
-				}
-
-				.accuracy {
-					margin-top: 5px;
-					font-size: var(--fs-r);
-					font-weight: var(--fw-sb);
-				}
-			}
-		}
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
 	}
 }

@@ -1,0 +1,23 @@
+.border {
+	background: var(--colors-gradient-primary);
+	border-radius: 100px;
+	margin-left: auto;
+	margin-right: auto;
+	padding: 2px;
+
+	.avatar {
+		display: flex;
+		width: 160px;
+		height: 160px;
+		border-radius: 100px;
+		align-items: center;
+		margin-left: auto;
+		margin-right: auto;
+		box-shadow: 0px 0px 10px var(--colors-shadow);
+		overflow: hidden;
+
+		img {
+			width: 100%;
+		}
+	}
+}

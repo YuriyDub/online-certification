@@ -34,11 +34,9 @@ export const fetchCourses = async (page, category, searchLine) => {
   try {
     const response = await instanceAxios.get(
       COURSES_CARDS_URL +
-        `${
-          category === 'All'
-            ? '?'
-            : `?category=${category}&`
-        }page=${page}&limit=10${searchLine && `&search=${searchLine}`}`,
+        `${category === 'All' ? '?' : `?category=${category}&`}page=${page}&limit=10${
+          searchLine && `&search=${searchLine}`
+        }`,
     );
     return response.data;
   } catch (error) {
@@ -89,5 +87,14 @@ export const checkAuth = async () => {
     return response.data;
   } catch (error) {
     console.error('Refresh error:', error?.response?.data?.message);
+  }
+};
+
+export const getUser = async () => {
+  try {
+    const response = await instanceAxios.get('/profile');
+    return response.data;
+  } catch (error) {
+    console.error('Get profile error:', error?.response?.data?.message);
   }
 };

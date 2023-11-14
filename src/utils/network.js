@@ -7,7 +7,7 @@ const instanceAxios = axios.create({
 });
 
 instanceAxios.interceptors.request.use((config) => {
-  const token = JSON.parse(localStorage.getItem('persist:auth')).token.slice(1, -1);
+  const token = JSON.parse(localStorage.getItem('persist:auth'))?.token.slice(1, -1);
   config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
@@ -16,17 +16,18 @@ instanceAxios.interceptors.response.use(
   (config) => config,
   async (error) => {
     const originalRequest = error.config;
-    if (error.response.status === 401 && !error.config._isRetry) {
-      originalRequest._isRetry = true;
+    if (error.response.status === 401) {
       try {
-        const response = await axios.get(`${API_URL}/refresh`, { withCredentials: true });
+        const response = await checkAuth();
         localStorage.setItem('persist:auth', { accessToken: response.data.accessToken });
         return instanceAxios.request(originalRequest);
       } catch {
         console.error('User is not authorized');
+        return error.response;
       }
+    } else {
+      return error.response;
     }
-    throw error;
   },
 );
 
@@ -48,18 +49,21 @@ export const fetchCourses = async (page, category, searchLine) => {
 export const fetchCourse = async (id) => {
   try {
     const response = await instanceAxios.get(COURSES_CARDS_URL + `/id/${id}`);
+    console.log('ErRor', response);
     return response.data;
   } catch (error) {
-    console.error('FetchCourse error:', error?.response?.data?.message);
-    throw new Error('FetchCourse error');
+    console.error('FetchCourse error:', error?.message);
+    return false;
   }
 };
 
 export const signIn = async (username, password) => {
   try {
     const response = await instanceAxios.post('/signin', { username, password });
+
     return response.data;
   } catch (error) {
+    console.log(error);
     console.error('Sign in error:', error?.response?.data?.message);
   }
 };
@@ -86,7 +90,10 @@ export const checkAuth = async () => {
     const response = await axios.get(`${API_URL}/refresh`, { withCredentials: true });
     return response.data;
   } catch (error) {
-    console.error('Refresh error:', error?.response?.data?.message);
+    console.error('Refresh error:', error.message);
+    if (document.location.pathname !== '/login') {
+      document.location.replace('/login');
+    }
   }
 };
 

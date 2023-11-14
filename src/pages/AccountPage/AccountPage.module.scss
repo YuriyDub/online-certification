@@ -7,6 +7,7 @@
 
 	.title {
 		margin-top: 25px;
+		margin-bottom: 25px;
 		font-size: var(--fs-bg);
 		font-weight: var(--fw-sb);
 		text-align: center;
@@ -19,15 +20,22 @@
 	}
 
 	.profile {
-		display: flex;
-		flex-direction: column;
-		gap: 5px;
-		margin: 20px 10px;
-		li {
-			font-size: var(--fs-sm);
-			font-weight: var(--fw-sb);
-			span {
-				font-weight: var(--fw-r);
+		width: 100%;
+		padding: 50px 0px;
+
+		.description {
+			display: flex;
+			flex-direction: column;
+			gap: 5px;
+			margin: 20px 10px;
+			margin-bottom: 100px;
+
+			li {
+				font-size: var(--fs-sm);
+				font-weight: var(--fw-sb);
+				span {
+					font-weight: var(--fw-r);
+				}
 			}
 		}
 	}
@@ -37,6 +45,7 @@
 	}
 
 	.coursesSection {
+		padding: 50px 0px;
 		background: var(--colors-gradient-primary);
 		background-size: 500% 500%;
 		animation: gradient 60s ease infinite;
@@ -47,7 +56,6 @@
 		display: grid;
 		gap: 20px 25px;
 		margin-top: 10px;
-		margin-bottom: 100px;
 		padding: 10px;
 		grid-template-columns: 1fr 1fr;
 	}

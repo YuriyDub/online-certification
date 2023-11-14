@@ -27,7 +27,7 @@ export const CoursePage = () => {
           <Loader className={styles.loader} variant={'dark'} />
         ) : (
           <>
-            {isFetching ? (
+            {isFetching || isError ? (
               <Loader />
             ) : (
               <div className={styles.course}>

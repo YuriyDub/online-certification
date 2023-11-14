@@ -13,7 +13,7 @@ export const AccountPage = () => {
 
   useEffect(() => {
     dispatch(getProfile());
-  }, []);
+  }, [dispatch]);
 
   const user = useSelector((state) => state.auth.user);
 
@@ -22,29 +22,9 @@ export const AccountPage = () => {
       <Container>
         <Avatar />
         <h1 className={styles.title}>Hello {user ? user?.username : 'User'}!</h1>
-        <Divider />
-        <h2 className={styles.subTitle}>Profile:</h2>
-        <ul className={styles.profile}>
-          <li>
-            user name: <span>{user.username ? user.username : '*not identified'}</span>
-          </li>
-          <li>
-            email: <span>{user.email ? user.email : '*not identified'}</span>
-          </li>
-          <li>
-            age: <span>{user.age ? user.age : '*not identified'}</span>
-          </li>
-          <li>
-            gender: <span>{user.sex ? user.sex : '*not identified'}</span>
-          </li>
-          <li>
-            city: <span>{user.city ? user.city : '*not identified'}</span>
-          </li>
-        </ul>
       </Container>
       <section className={styles.coursesSection}>
         <Container>
-          <Divider />
           <h2 className={styles.subTitle} style={{ color: 'var(--colors-text-secondary)' }}>
             Your Courses:
           </h2>
@@ -54,6 +34,29 @@ export const AccountPage = () => {
             <EnrolledCourseCard />
             <EnrolledCourseCard />
           </div>
+        </Container>
+      </section>
+      <section className={styles.profile}>
+        <Container>
+          <h2 className={styles.subTitle}>Profile:</h2>
+          <Divider />
+          <ul className={styles.description}>
+            <li>
+              user name: <span>{user.username ? user.username : '*not identified'}</span>
+            </li>
+            <li>
+              email: <span>{user.email ? user.email : '*not identified'}</span>
+            </li>
+            <li>
+              age: <span>{user.age ? user.age : '*not identified'}</span>
+            </li>
+            <li>
+              gender: <span>{user.sex ? user.sex : '*not identified'}</span>
+            </li>
+            <li>
+              city: <span>{user.city ? user.city : '*not identified'}</span>
+            </li>
+          </ul>
         </Container>
       </section>
     </div>

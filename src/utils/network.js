@@ -16,13 +16,16 @@ instanceAxios.interceptors.response.use(
   (config) => config,
   async (error) => {
     const originalRequest = error.config;
-    if (error.response.status === 401) {
+    if (error.response.status === 401 && !originalRequest._isRetry) {
+      originalRequest._isRetry = true;
       try {
         const response = await checkAuth();
         localStorage.setItem('persist:auth', { accessToken: response.data.accessToken });
         return instanceAxios.request(originalRequest);
       } catch {
         console.error('User is not authorized');
+        document.location.replace('/login');
+        localStorage.setItem('persist:auth', { isAuth: false });
         return error.response;
       }
     } else {
@@ -49,7 +52,6 @@ export const fetchCourses = async (page, category, searchLine) => {
 export const fetchCourse = async (id) => {
   try {
     const response = await instanceAxios.get(COURSES_CARDS_URL + `/id/${id}`);
-    console.log('ErRor', response);
     return response.data;
   } catch (error) {
     console.error('FetchCourse error:', error?.message);
@@ -63,7 +65,6 @@ export const signIn = async (username, password) => {
 
     return response.data;
   } catch (error) {
-    console.log(error);
     console.error('Sign in error:', error?.response?.data?.message);
   }
 };
@@ -91,9 +92,6 @@ export const checkAuth = async () => {
     return response.data;
   } catch (error) {
     console.error('Refresh error:', error.message);
-    if (document.location.pathname !== '/login') {
-      document.location.replace('/login');
-    }
   }
 };
 
@@ -103,5 +101,13 @@ export const getUser = async () => {
     return response.data;
   } catch (error) {
     console.error('Get profile error:', error?.response?.data?.message);
+  }
+};
+
+export const enrollCourse = async (id) => {
+  try {
+    await instanceAxios.post(`/courses/enroll?id=${id}`);
+  } catch (error) {
+    console.error('Enroll course error:', error?.response?.data?.message);
   }
 };

@@ -4,6 +4,7 @@ import styles from './EnrolledCourseCard.module.scss';
 export const EnrolledCourseCard = ({
   imgUrl = placeholder,
   title = 'Professional React and Redux Tool Kit',
+  progress = 0,
   accuracy = 100,
   category = 'Design',
   level = 'Beginner',
@@ -15,7 +16,7 @@ export const EnrolledCourseCard = ({
       <div className={styles.details}>
         <h3 className={styles.courseTitle}>Professional React and Redux Tool Kit</h3>
         <div className={styles.progressBar}>
-          <div className={styles.progress}></div>
+          <div className={styles.progress}>{progress}</div>
         </div>
         <div className={styles.info}>
           <div className={styles.level}>{level}</div>

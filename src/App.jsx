@@ -5,9 +5,18 @@ import { LogInPage } from './pages/LogInPage';
 import { SignUpPage } from './pages/SignUpPage';
 import { AccountPage } from './pages/AccountPage';
 import { CoursePage } from './pages/CoursePage';
+import { useEffect } from 'react';
+import { useDispatch } from 'react-redux';
 import styles from './App.module.scss';
+import { refreshAuth } from './store/slices/authSlice';
 
 const App = () => {
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(refreshAuth());
+  }, [dispatch]);
+
   return (
     <div className={styles.app}>
       <Header />

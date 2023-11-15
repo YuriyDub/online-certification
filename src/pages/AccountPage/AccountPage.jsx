@@ -1,7 +1,6 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Container } from '../../components/UI/Container';
 import { Divider } from '../../components/UI/Divider';
-import placeholder from '../../assets/img/placeholder.jpg';
 import styles from './AccountPage.module.scss';
 import { useEffect } from 'react';
 import { getProfile } from '../../store/slices/authSlice';
@@ -30,9 +29,13 @@ export const AccountPage = () => {
           </h2>
           <Divider />
           <div className={styles.courses}>
-            <EnrolledCourseCard />
-            <EnrolledCourseCard />
-            <EnrolledCourseCard />
+            {user.enrolledCourses?.map((course) => (
+              <EnrolledCourseCard
+                key={course._id}
+                title={course.courseTitle}
+                progress={course.progress}
+              />
+            ))}
           </div>
         </Container>
       </section>

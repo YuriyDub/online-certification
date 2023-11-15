@@ -1,23 +1,19 @@
-import { useNavigate, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import useCourseQuery from '../../hooks/useCourseQuery';
 import placeholder from '../../assets/img/placeholder.jpg';
 import { Container } from '../../components/UI/Container';
 import { Divider } from '../../components/UI/Divider';
-import styles from './CoursePage.module.scss';
 import { Loader } from '../../components/UI/Loader';
+import { Button } from '../../components/UI/Button';
+import { enrollCourse } from '../../utils/network';
+import styles from './CoursePage.module.scss';
 
 export const CoursePage = () => {
   const { id } = useParams();
   const token = useSelector((state) => state.auth.token);
 
-  const { data, isLoading, isError, isFetching } = useCourseQuery(id, token);
-
-  const navigate = useNavigate();
-
-  if (isError) {
-    navigate('/login');
-  }
+  const { data, isLoading, isFetching } = useCourseQuery(id, token);
 
   return (
     <div className={styles.page}>
@@ -27,7 +23,7 @@ export const CoursePage = () => {
           <Loader className={styles.loader} variant={'dark'} />
         ) : (
           <>
-            {isFetching || isError ? (
+            {isFetching ? (
               <Loader />
             ) : (
               <div className={styles.course}>
@@ -52,7 +48,12 @@ export const CoursePage = () => {
                       </li>
                     ))}
                   </ul>
-                  <span className={styles.author}>{data.instructor.name}</span>
+                  <div className={styles.footer}>
+                    <Button variant="gradient" onClick={() => enrollCourse(id)}>
+                      enroll in course
+                    </Button>
+                    <span className={styles.author}>{data.instructor.name}</span>
+                  </div>
                 </section>
                 <section>
                   <img src={placeholder} alt="placeholder" className={styles.preview} />

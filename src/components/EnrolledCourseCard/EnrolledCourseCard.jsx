@@ -1,3 +1,4 @@
+import { Bar } from '../UI/Bar';
 import placeholder from '../../assets/img/placeholder.jpg';
 import styles from './EnrolledCourseCard.module.scss';
 
@@ -15,9 +16,7 @@ export const EnrolledCourseCard = ({
       <img src={placeholder} alt="Course" />
       <div className={styles.details}>
         <h3 className={styles.courseTitle}>Professional React and Redux Tool Kit</h3>
-        <div className={styles.progressBar}>
-          <div className={styles.progress}>{progress}</div>
-        </div>
+        <Bar progress={progress} />
         <div className={styles.info}>
           <div className={styles.level}>{level}</div>
           <div className={styles.category}>{category}</div>

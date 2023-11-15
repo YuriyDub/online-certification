@@ -18,7 +18,7 @@ export const AccountPage = () => {
 
   return (
     <div className={styles.page}>
-      <Container>
+      <Container style={{ alignItems: 'center' }}>
         <Avatar />
         <h1 className={styles.title}>Hello {user ? user?.username : 'User'}!</h1>
       </Container>

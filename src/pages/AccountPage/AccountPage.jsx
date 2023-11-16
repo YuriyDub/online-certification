@@ -1,10 +1,11 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Container } from '../../components/UI/Container';
 import { Divider } from '../../components/UI/Divider';
-import styles from './AccountPage.module.scss';
 import { useEffect } from 'react';
 import { getProfile } from '../../store/slices/authSlice';
 import { EnrolledCourseCard } from '../../components/EnrolledCourseCard';
+import { Avatar } from '../../components/UI/Avatar';
+import styles from './AccountPage.module.scss';
 
 export const AccountPage = () => {
   const dispatch = useDispatch();
@@ -18,8 +19,8 @@ export const AccountPage = () => {
   return (
     <div className={styles.page}>
       <Container style={{ alignItems: 'center' }}>
-        {/* <Avatar /> */}
-        <input type="file" name="avatar" accept="image/png, image/jpeg" />
+        <Avatar />
+        {/* <input type="file" name="avatar" accept="image/png, image/jpeg" /> */}
         <h1 className={styles.title}>Hello {user ? user?.username : 'User'}!</h1>
       </Container>
       <section className={styles.coursesSection}>

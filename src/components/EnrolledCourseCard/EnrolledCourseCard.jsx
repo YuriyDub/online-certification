@@ -13,9 +13,9 @@ export const EnrolledCourseCard = ({
 }) => {
   return (
     <div className={styles.course}>
-      <img src={placeholder} alt="Course" />
+      <img src={imgUrl} alt="Course" />
       <div className={styles.details}>
-        <h3 className={styles.courseTitle}>Professional React and Redux Tool Kit</h3>
+        <h3 className={styles.courseTitle}>{title}</h3>
         <Bar progress={progress} />
         <div className={styles.info}>
           <div className={styles.level}>{level}</div>

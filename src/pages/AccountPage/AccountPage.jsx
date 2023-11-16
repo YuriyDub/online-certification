@@ -4,7 +4,6 @@ import { Divider } from '../../components/UI/Divider';
 import styles from './AccountPage.module.scss';
 import { useEffect } from 'react';
 import { getProfile } from '../../store/slices/authSlice';
-import { Avatar } from '../../components/UI/Avatar';
 import { EnrolledCourseCard } from '../../components/EnrolledCourseCard';
 
 export const AccountPage = () => {
@@ -19,7 +18,8 @@ export const AccountPage = () => {
   return (
     <div className={styles.page}>
       <Container style={{ alignItems: 'center' }}>
-        <Avatar />
+        {/* <Avatar /> */}
+        <input type="file" name="avatar" accept="image/png, image/jpeg" />
         <h1 className={styles.title}>Hello {user ? user?.username : 'User'}!</h1>
       </Container>
       <section className={styles.coursesSection}>

@@ -25,10 +25,10 @@ instanceAxios.interceptors.response.use(
       } catch {
         console.error('User is not authorized');
         document.location.replace('/login');
-        localStorage.setItem('persist:auth', { isAuth: false });
         return error.response;
       }
     } else {
+      localStorage.setItem('persist:auth', { isAuth: false, token: '' });
       return error.response;
     }
   },
@@ -62,7 +62,6 @@ export const fetchCourse = async (id) => {
 export const signIn = async (username, password) => {
   try {
     const response = await instanceAxios.post('/signin', { username, password });
-
     return response.data;
   } catch (error) {
     console.error('Sign in error:', error?.response?.data?.message);

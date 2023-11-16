@@ -7,7 +7,7 @@ const instanceAxios = axios.create({
 });
 
 instanceAxios.interceptors.request.use((config) => {
-  const token = JSON.parse(localStorage.getItem('persist:auth')).token.slice(1, -1);
+  const token = JSON.parse(localStorage.getItem('persist:auth'))?.token.slice(1, -1);
   config.headers.Authorization = `Bearer ${token}`;
   return config;
 });
@@ -16,17 +16,21 @@ instanceAxios.interceptors.response.use(
   (config) => config,
   async (error) => {
     const originalRequest = error.config;
-    if (error.response.status === 401 && !error.config._isRetry) {
+    if (error.response.status === 401 && !originalRequest._isRetry) {
       originalRequest._isRetry = true;
       try {
-        const response = await axios.get(`${API_URL}/refresh`, { withCredentials: true });
+        const response = await checkAuth();
         localStorage.setItem('persist:auth', { accessToken: response.data.accessToken });
         return instanceAxios.request(originalRequest);
       } catch {
         console.error('User is not authorized');
+        document.location.replace('/login');
+        return error.response;
       }
+    } else {
+      localStorage.setItem('persist:auth', { isAuth: false, token: '' });
+      return error.response;
     }
-    throw error;
   },
 );
 
@@ -34,11 +38,9 @@ export const fetchCourses = async (page, category, searchLine) => {
   try {
     const response = await instanceAxios.get(
       COURSES_CARDS_URL +
-        `${
-          category === 'All'
-            ? '?'
-            : `?category=${category}&`
-        }page=${page}&limit=10${searchLine && `&search=${searchLine}`}`,
+        `${category === 'All' ? '?' : `?category=${category}&`}page=${page}&limit=10${
+          searchLine && `&search=${searchLine}`
+        }`,
     );
     return response.data;
   } catch (error) {
@@ -52,8 +54,8 @@ export const fetchCourse = async (id) => {
     const response = await instanceAxios.get(COURSES_CARDS_URL + `/id/${id}`);
     return response.data;
   } catch (error) {
-    console.error('FetchCourse error:', error?.response?.data?.message);
-    throw new Error('FetchCourse error');
+    console.error('FetchCourse error:', error?.message);
+    return false;
   }
 };
 
@@ -88,6 +90,23 @@ export const checkAuth = async () => {
     const response = await axios.get(`${API_URL}/refresh`, { withCredentials: true });
     return response.data;
   } catch (error) {
-    console.error('Refresh error:', error?.response?.data?.message);
+    console.error('Refresh error:', error.message);
+  }
+};
+
+export const getUser = async () => {
+  try {
+    const response = await instanceAxios.get('/profile');
+    return response.data;
+  } catch (error) {
+    console.error('Get profile error:', error?.response?.data?.message);
+  }
+};
+
+export const enrollCourse = async (id) => {
+  try {
+    await instanceAxios.post(`/courses/enroll?id=${id}`);
+  } catch (error) {
+    console.error('Enroll course error:', error?.response?.data?.message);
   }
 };

@@ -34,13 +34,14 @@ export const HomePage = () => {
 
   const { data, refetch, isFetching } = useCoursesQuery(page, category, searchLine);
 
+  const dispatch = useDispatch();
+
+  const navigate = useNavigate();
+  
   useEffect(() => {
     refetch();
   }, [category, page, searchLine, refetch]);
 
-  const dispatch = useDispatch();
-
-  const navigate = useNavigate();
 
   const toCourse = (id) => navigate(`/courses/${id}`);
 

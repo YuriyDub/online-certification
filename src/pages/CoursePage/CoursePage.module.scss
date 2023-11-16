@@ -98,11 +98,16 @@
 				}
 			}
 
-			.author {
-				display: block;
-				margin-top: auto;
-				margin-top: 5px;
-				text-align: end;
+			.footer {
+				display: flex;
+				justify-content: space-between;
+
+				.author {
+					display: block;
+					margin-top: auto;
+					margin-top: 5px;
+					text-align: end;
+				}
 			}
 		}
 

@@ -1,0 +1,16 @@
+.progressBar {
+	display: flex;
+	align-items: center;
+	box-sizing: border-box;
+	padding: 4px;
+	margin-top: 10px;
+	box-shadow: 0px 0px 10px var(--colors-shadow) inset;
+	width: 100%;
+	border-radius: var(--rad-second);
+
+	.progress {
+		height: 5px;
+		background: var(--colors-gradient-primary);
+		border-radius: var(--rad-second);
+	}
+}

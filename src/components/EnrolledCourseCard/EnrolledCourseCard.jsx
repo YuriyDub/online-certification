@@ -1,6 +1,7 @@
 import { Bar } from '../UI/Bar';
 import placeholder from '../../assets/img/placeholder.jpg';
 import styles from './EnrolledCourseCard.module.scss';
+import { Button } from '../UI/Button';
 
 export const EnrolledCourseCard = ({
   imgUrl = placeholder,
@@ -22,7 +23,10 @@ export const EnrolledCourseCard = ({
           <div className={styles.category}>{category}</div>
         </div>
         <p className={styles.description}>{description}</p>
-        <div className={styles.accuracy}>Accuracy {accuracy}%</div>
+        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+          <div className={styles.accuracy}>Accuracy {accuracy}%</div>
+          <Button variant="gradient">{'to course >'}</Button>
+        </div>
       </div>
     </div>
   );

@@ -19,8 +19,16 @@ export const AccountPage = () => {
   return (
     <div className={styles.page}>
       <Container style={{ alignItems: 'center' }}>
-        <Avatar />
-        {/* <input type="file" name="avatar" accept="image/png, image/jpeg" /> */}
+        <label for="avatar">
+          <Avatar />
+        </label>
+        <input
+          type="file"
+          id="avatar"
+          name="avatar"
+          accept="image/jpeg"
+          style={{ width: '0px', height: '0px' }}
+        />
         <h1 className={styles.title}>Hello {user ? user?.username : 'User'}!</h1>
       </Container>
       <section className={styles.coursesSection}>

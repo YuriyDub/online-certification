@@ -20,7 +20,7 @@ instanceAxios.interceptors.response.use(
       originalRequest._isRetry = true;
       try {
         const response = await checkAuth();
-        localStorage.setItem('persist:auth', { accessToken: response.data.accessToken });
+        localStorage.setItem('persist:auth', { token: response.data.accessToken });
         return instanceAxios.request(originalRequest);
       } catch {
         console.error('User is not authorized');
@@ -49,15 +49,11 @@ export const fetchCourses = async (page, category, searchLine) => {
   }
 };
 
-export const fetchCourse = async (id) => {
-  try {
-    const response = await instanceAxios.get(COURSES_CARDS_URL + `/id/${id}`);
-    return response.data;
-  } catch (error) {
-    console.error('FetchCourse error:', error?.message);
-    return false;
-  }
-};
+export const fetchCourse = async (id) =>
+  instanceAxios
+    .get(COURSES_CARDS_URL + `/id/${id}`)
+    .then((res) => res.data)
+    .catch((rej) => rej);
 
 export const signIn = async (username, password) => {
   try {

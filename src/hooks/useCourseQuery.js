@@ -4,6 +4,7 @@ import { fetchCourse } from '../utils/network';
 const useCourseQuery = (id) => {
   return useQuery({
     queryFn: () => fetchCourse(id),
+
     queryKey: ['course'],
     initialData: {
       course: {

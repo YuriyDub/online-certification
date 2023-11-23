@@ -27,6 +27,7 @@ export const CoursePage = () => {
       isEnrolled,
     },
     isFetching,
+    isError,
   } = useCourseQuery(id);
 
   return (
@@ -35,6 +36,8 @@ export const CoursePage = () => {
         <Divider />
         {isFetching ? (
           <Loader className={styles.loader} variant={'dark'} />
+        ) : isError ? (
+          <h1>Error</h1>
         ) : (
           <div className={styles.course}>
             <section className={styles.details}>

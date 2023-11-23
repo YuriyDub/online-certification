@@ -33,7 +33,7 @@ export const CourseCard = ({
         <div className={styles.info}>
           <article>
             <h2>{title} </h2>
-            <p>{author}</p>
+            <span>{author}</span>
           </article>
           <Button variant="gradient" className={styles.infoButton} onClick={onClick}>
             Details

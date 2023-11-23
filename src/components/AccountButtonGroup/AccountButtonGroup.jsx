@@ -3,14 +3,17 @@ import { useDispatch } from 'react-redux';
 import { logOut } from '../../store/slices/authSlice';
 import { Button } from '../UI/Button';
 import styles from './AccountButtonGroup.module.scss';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Avatar } from '../UI/Avatar';
 
 export const AccountButtonGroup = () => {
+  const navigate = useNavigate();
+
   const dispatch = useDispatch();
 
   const resetAuth = () => {
     dispatch(logOut());
+    navigate('/');
   };
 
   return (

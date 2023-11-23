@@ -1,9 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { checkAuth, getUser, resetAuth } from '../../utils/network';
-
-export const refreshAuth = createAsyncThunk('auth/refreshAuth', async () => {
-  return await checkAuth();
-});
+import { getUser, resetAuth } from '../../utils/network';
 
 export const logOut = createAsyncThunk('auth/logOut', async () => {
   return await resetAuth();
@@ -38,14 +34,6 @@ const authSlice = createSlice({
     },
   },
   extraReducers: {
-    [refreshAuth.fulfilled]: (state, action) => {
-      if (action.payload) {
-        state.token = action.payload.accessToken;
-        state.user = action.payload.user;
-        state.isAuth = true;
-      }
-    },
-
     [logOut.fulfilled]: (state) => {
       state.token = null;
       state.user = null;
@@ -55,6 +43,9 @@ const authSlice = createSlice({
       if (action.payload) {
         state.user = action.payload;
       }
+    },
+    [getProfile.rejected]: (state) => {
+      state.user = null;
     },
   },
 });

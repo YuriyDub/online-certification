@@ -23,7 +23,13 @@ export const EnrolledCourseCard = ({
           <div className={styles.category}>{category}</div>
         </div>
         <p className={styles.description}>{description}</p>
-        <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center' }}>
+        <div
+          style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            marginTop: 'auto',
+          }}>
           <div className={styles.accuracy}>Accuracy {accuracy}%</div>
           <Button variant="gradient">{'to course >'}</Button>
         </div>

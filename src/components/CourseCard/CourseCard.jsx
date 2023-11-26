@@ -19,7 +19,7 @@ export const CourseCard = ({
         <div className={styles.top}>
           <img src={img} alt="Course preview" />
 			 <Divider/>
-          <p className={styles.description}>
+          <div className={styles.description}>
             {description}
             <div className={styles.addInfo}>
               <span className={styles.level}>{level}</span>
@@ -28,7 +28,7 @@ export const CourseCard = ({
                 {duration}
               </span>
             </div>
-          </p>
+          </div>
         </div>
         <div className={styles.info}>
           <article>

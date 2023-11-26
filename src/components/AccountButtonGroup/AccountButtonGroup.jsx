@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { logOut } from '../../store/slices/authSlice';
 import { Button } from '../UI/Button';
 import styles from './AccountButtonGroup.module.scss';
@@ -11,6 +11,8 @@ export const AccountButtonGroup = () => {
 
   const dispatch = useDispatch();
 
+  const user = useSelector((state) => state.auth.user);
+
   const resetAuth = () => {
     dispatch(logOut());
     navigate('/');
@@ -20,9 +22,9 @@ export const AccountButtonGroup = () => {
     <div className={styles.group}>
       <Button onClick={resetAuth}>Log out</Button>
       <Link
-        to="/account"
+        to="/profile"
         style={{ display: 'flex', alignItems: 'center', justifyContent: 'center' }}>
-        <Avatar size="small" />
+        <Avatar size="small" imgUrl={user.avatar} />
       </Link>
     </div>
   );

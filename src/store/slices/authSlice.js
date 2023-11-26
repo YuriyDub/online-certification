@@ -1,5 +1,5 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
-import { getUser, resetAuth } from '../../utils/network';
+import { getUser, resetAuth, updateProfile } from '../../utils/network';
 
 export const logOut = createAsyncThunk('auth/logOut', async () => {
   return await resetAuth();
@@ -7,6 +7,10 @@ export const logOut = createAsyncThunk('auth/logOut', async () => {
 
 export const getProfile = createAsyncThunk('auth/getProfile', async () => {
   return await getUser();
+});
+
+export const editProfile = createAsyncThunk('auth/editProfile', async (profileData) => {
+  return await updateProfile(profileData);
 });
 
 const authSlice = createSlice({
@@ -46,6 +50,11 @@ const authSlice = createSlice({
     },
     [getProfile.rejected]: (state) => {
       state.user = null;
+    },
+    [editProfile.fulfilled]: (state, action) => {
+      if (action.payload) {
+        state.user = action.payload;
+      }
     },
   },
 });

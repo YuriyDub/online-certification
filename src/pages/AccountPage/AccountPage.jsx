@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { Container } from '../../components/UI/Container';
 import { Divider } from '../../components/UI/Divider';
 import { useEffect } from 'react';
-import { getProfile } from '../../store/slices/authSlice';
+import { editProfile, getProfile } from '../../store/slices/authSlice';
 import { EnrolledCourseCard } from '../../components/EnrolledCourseCard';
 import { Avatar } from '../../components/UI/Avatar';
 import { Loader } from '../../components/UI/Loader';
@@ -17,15 +17,24 @@ export const AccountPage = () => {
 
   const user = useSelector((state) => state.auth.user);
 
-  console.log(user);
+  const avatarHandler = (e) => {
+    const avatar = e.target.files[0];
+    const reader = new FileReader();
+
+    reader.onloadend = () => {
+      dispatch(editProfile({ ...user, avatar: reader.result.toString() }));
+    };
+
+    reader.readAsDataURL(avatar);
+  };
 
   return (
     <>
       {user ? (
         <div className={styles.page}>
           <Container style={{ alignItems: 'center' }}>
-            <label for="avatar">
-              <Avatar />
+            <label htmlFor="avatar">
+              <Avatar imgUrl={user.avatar} />
             </label>
             <input
               type="file"
@@ -33,6 +42,7 @@ export const AccountPage = () => {
               name="avatar"
               accept="image/jpeg"
               style={{ width: '0px', height: '0px' }}
+              onChange={(e) => avatarHandler(e)}
             />
             <h1 className={styles.title}>Hello {user ? user?.username : 'User'}!</h1>
           </Container>

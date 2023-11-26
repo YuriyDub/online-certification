@@ -8,7 +8,6 @@ import { CoursePage } from './pages/CoursePage';
 import styles from './App.module.scss';
 
 const App = () => {
-
   return (
     <div className={styles.app}>
       <Header />
@@ -17,7 +16,7 @@ const App = () => {
         <Route path="/courses/:id" element={<CoursePage />} />
         <Route path="/login" element={<LogInPage />} />
         <Route path="/signup" element={<SignUpPage />} />
-        <Route path="/account" element={<AccountPage />} />
+        <Route path="/profile" element={<AccountPage />} />
       </Routes>
     </div>
   );

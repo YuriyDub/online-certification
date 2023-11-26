@@ -25,11 +25,11 @@ instanceAxios.interceptors.response.use(
       } catch {
         console.error('User is not authorized');
         document.location.replace('/login');
-        return Promise.reject(error);
+        localStorage.setItem('persist:auth', { isAuth: false, token: null, user: null });
+        return error;
       }
     } else {
-      localStorage.setItem('persist:auth', { isAuth: false, token: null, user: null });
-      return Promise.reject(error);
+      return error;
     }
   },
 );
@@ -97,6 +97,16 @@ export const getUser = async () => {
     return response.data;
   } catch (error) {
     console.error('Get profile error:', error?.message);
+    throw error;
+  }
+};
+
+export const updateProfile = async (profileData) => {
+  try {
+    const response = await instanceAxios.post('/updateprofile', profileData);
+    return response.data;
+  } catch (error) {
+    console.error('Update profile error:', error?.message);
     throw error;
   }
 };

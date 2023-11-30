@@ -87,6 +87,7 @@ export const LogInPage = () => {
                 name={field.name}
                 value={field.value}
                 onChange={field.onChange}
+					 type='password'
                 placeHolder="password"
                 label="password"
                 errorMessage={errors?.password?.message}

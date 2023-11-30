@@ -26,10 +26,12 @@ instanceAxios.interceptors.response.use(
         console.error('User is not authorized');
         document.location.replace('/login');
         localStorage.setItem('persist:auth', { isAuth: false, token: null, user: null });
-        return error;
+        console.error(`Refresh token error: ${error}`);
+        throw new Error('Refresh token error');
       }
     } else {
-      return error;
+      console.error(`User isn't authorized error: ${error}`);
+      throw new Error("User isn't authorized error");
     }
   },
 );
@@ -44,8 +46,8 @@ export const fetchCourses = async (page, category, searchLine) => {
     );
     return response.data;
   } catch (error) {
-    console.error('Fetch courses error:', error);
-    throw error;
+    console.error(`Fetch courses error: ${error}`);
+    throw new Error('Fetch courses error');
   }
 };
 
@@ -57,8 +59,8 @@ export const signIn = async (username, password) => {
     const response = await instanceAxios.post('/signin', { username, password });
     return response.data;
   } catch (error) {
-    console.error('Sign in error:', error?.message);
-    throw error;
+    console.error(`Sign in error: ${error}`);
+    throw new Error('Sign in error');
   }
 };
 
@@ -67,8 +69,8 @@ export const signUp = async (username, email, password) => {
     const response = await instanceAxios.post('/signup', { username, password, email });
     return response.data;
   } catch (error) {
-    console.error('Sign up error:', error?.message);
-    throw error;
+    console.error(`Sign up error: ${error}`);
+    throw new Error('Sign up error');
   }
 };
 
@@ -76,8 +78,8 @@ export const resetAuth = async () => {
   try {
     instanceAxios.post('/signout');
   } catch (error) {
-    console.error('Sign out error:', error?.message);
-    throw error;
+    console.error(`Sign out error: ${error}`);
+    throw new Error('Sign out error');
   }
 };
 
@@ -86,8 +88,8 @@ const checkAuth = async () => {
     const response = await axios.get(`${API_URL}/refresh`, { withCredentials: true });
     return response.data;
   } catch (error) {
-    console.error('Refresh error:', error?.message);
-    throw error;
+    console.error(`Refresh error: ${error}`);
+    throw new Error('Refresh error');
   }
 };
 
@@ -96,8 +98,8 @@ export const getUser = async () => {
     const response = await instanceAxios.get('/profile');
     return response.data;
   } catch (error) {
-    console.error('Get profile error:', error?.message);
-    throw error;
+    console.error(`Get profile error: ${error}`);
+    throw new Error('Get profile error');
   }
 };
 
@@ -106,8 +108,8 @@ export const updateProfile = async (profileData) => {
     const response = await instanceAxios.post('/updateprofile', profileData);
     return response.data;
   } catch (error) {
-    console.error('Update profile error:', error?.message);
-    throw error;
+    console.error(`Update profile error: ${error}`);
+    throw new Error('Update profile error');
   }
 };
 
@@ -115,7 +117,7 @@ export const enrollCourse = async (id) => {
   try {
     await instanceAxios.post(`/courses/enroll?id=${id}`);
   } catch (error) {
-    console.error('Enroll course error:', error?.message);
-    throw error;
+    console.error(`Enroll course error: ${error}`);
+    throw new Error('Enroll course error');
   }
 };

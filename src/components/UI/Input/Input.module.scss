@@ -45,9 +45,9 @@
 .errorMessage {
 	color: var(--colors-incorrect);
 	font-size: var(--fs-lt);
-	font-weight: var(--fw-sb);
-	text-transform: capitalize;
+	font-weight: var(--fw-b);
+	text-transform: lowercase;
 	margin-left: 20px;
-	margin-top: 1px;
+	margin-top: 3px;
 	position: absolute;
 }

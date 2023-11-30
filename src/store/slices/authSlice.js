@@ -2,15 +2,27 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit';
 import { getUser, resetAuth, updateProfile } from '../../utils/network';
 
 export const logOut = createAsyncThunk('auth/logOut', async () => {
-  return await resetAuth();
+  try {
+    return await resetAuth();
+  } catch (error) {
+    alert(error.message);
+  }
 });
 
 export const getProfile = createAsyncThunk('auth/getProfile', async () => {
-  return await getUser();
+  try {
+    return await getUser();
+  } catch (error) {
+    alert(error.message);
+  }
 });
 
 export const editProfile = createAsyncThunk('auth/editProfile', async (profileData) => {
-  return await updateProfile(profileData);
+  try {
+    return await updateProfile(profileData);
+  } catch (error) {
+    alert(error.message);
+  }
 });
 
 const authSlice = createSlice({

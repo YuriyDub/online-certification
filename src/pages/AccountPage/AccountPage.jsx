@@ -1,11 +1,13 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { Container } from '../../components/UI/Container';
+import { IconButton } from '../../components/UI/IconButton';
 import { Divider } from '../../components/UI/Divider';
 import { useEffect } from 'react';
 import { editProfile, getProfile } from '../../store/slices/authSlice';
 import { EnrolledCourseCard } from '../../components/EnrolledCourseCard';
 import { Avatar } from '../../components/UI/Avatar';
 import { Loader } from '../../components/UI/Loader';
+import editIcon from '../../assets/icons/edit.svg';
 import styles from './AccountPage.module.scss';
 
 export const AccountPage = () => {
@@ -33,17 +35,25 @@ export const AccountPage = () => {
       {user ? (
         <div className={styles.page}>
           <Container style={{ alignItems: 'center' }}>
-            <label htmlFor="avatar">
+            <div className={styles.avatar}>
+              <IconButton
+                size="small"
+                onClick={(e) => {
+                  document.querySelector('#avatar').click();
+                }}
+                className={styles.editButton}>
+                <img src={editIcon} alt="editIcon" />
+              </IconButton>
               <Avatar imgUrl={user.avatar} />
-            </label>
-            <input
-              type="file"
-              id="avatar"
-              name="avatar"
-              accept="image/jpeg"
-              style={{ width: '0px', height: '0px' }}
-              onChange={(e) => avatarHandler(e)}
-            />
+              <input
+                type="file"
+                id="avatar"
+                name="avatar"
+                accept="image/jpeg"
+                style={{ width: '0px', height: '0px' }}
+                onChange={(e) => avatarHandler(e)}
+              />
+            </div>
             <h1 className={styles.title}>Hello {user ? user?.username : 'User'}!</h1>
           </Container>
           <section className={styles.coursesSection}>

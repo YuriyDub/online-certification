@@ -57,4 +57,15 @@
 			font-weight: var(--fw-sb);
 		}
 	}
+
+	@media (max-width: 768px) {
+		flex-direction: column;
+		img {
+			max-height: max-content;
+			border-radius: 10px 10px 0px 0px;
+		}
+		.details {
+			border-radius: 0px 0px 10px 10px;
+		}
+	}
 }

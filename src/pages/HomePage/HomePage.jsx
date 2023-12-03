@@ -4,14 +4,14 @@ import { Container } from '../../components/UI/Container';
 import { Divider } from '../../components/UI/Divider';
 import { CourseCard } from '../../components/CourseCard/CourseCard';
 import { Categories } from '../../components/Categories';
-import banner from '../../assets/img/banner1.jpg';
-import styles from './HomePage.module.scss';
 import { Pagination } from '../../components/Pagination/Pagination';
 import { useNavigate } from 'react-router-dom';
 import { Loader } from '../../components/UI/Loader';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCategory, setPage } from '../../store/slices/homeSlice';
 import { useDebounce } from '../../hooks/useDebounce';
+import banner from '../../assets/img/banner1.jpg';
+import styles from './HomePage.module.scss';
 
 const categories = [
   'All',

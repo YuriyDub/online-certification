@@ -5,8 +5,15 @@
 	width: 100%;
 	margin-top: 150px;
 
+	.avatar {
+		position: relative;
+		.editButton {
+			position: absolute;
+			right: 0;
+		}
+	}
+
 	.title {
-		margin-top: 25px;
 		margin-bottom: 25px;
 		font-size: var(--fs-bg);
 		font-weight: var(--fw-sb);
@@ -58,6 +65,19 @@
 		margin-top: 10px;
 		padding: 10px;
 		grid-template-columns: 1fr 1fr;
+
+		@media (max-width: 1240px) {
+			grid-template-columns: 1fr;
+			.subTitle {
+				text-align: center;
+			}
+		}
+	}
+	
+	@media (max-width: 768px) {
+		.subTitle {
+			text-align: center;
+		}
 	}
 }
 

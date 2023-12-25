@@ -83,19 +83,10 @@ export const AccountPage = () => {
               <Divider />
               <ul className={styles.description}>
                 <li>
-                  user name: <span>{user.username ? user.username : '*not identified'}</span>
+                  Username: <span>{user.username ? user.username : '*not identified'}</span>
                 </li>
                 <li>
-                  email: <span>{user.email ? user.email : '*not identified'}</span>
-                </li>
-                <li>
-                  age: <span>{user.age ? user.age : '*not identified'}</span>
-                </li>
-                <li>
-                  gender: <span>{user.sex ? user.sex : '*not identified'}</span>
-                </li>
-                <li>
-                  city: <span>{user.city ? user.city : '*not identified'}</span>
+                  Email: <span>{user.email ? user.email : '*not identified'}</span>
                 </li>
               </ul>
             </Container>

@@ -13,17 +13,15 @@ export const CoursePage = () => {
 
   const {
     data: {
-      course: {
-        instructor,
-        image,
-        title,
-        description,
-        duration,
-        level,
-        category,
-        language,
-        lessons,
-      },
+      instructor,
+      image,
+      title,
+      description,
+      duration,
+      level,
+      category,
+      language,
+      lessons,
       isEnrolled,
     },
     isFetching,

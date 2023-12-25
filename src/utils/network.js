@@ -31,7 +31,6 @@ instanceAxios.interceptors.response.use(
       }
     } else {
       console.error(`User isn't authorized error: ${error}`);
-      throw new Error("User isn't authorized error");
     }
   },
 );

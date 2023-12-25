@@ -1,15 +1,17 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import useCourseQuery from '../../hooks/useCourseQuery';
 import placeholder from '../../assets/img/placeholder.jpg';
 import { Container } from '../../components/UI/Container';
 import { Divider } from '../../components/UI/Divider';
 import { Loader } from '../../components/UI/Loader';
 import { Button } from '../../components/UI/Button';
-import { enrollCourse } from '../../utils/network';
+import { enrollCourse, unenrollCourse } from '../../utils/network';
 import styles from './CoursePage.module.scss';
 
 export const CoursePage = () => {
   const { id } = useParams();
+
+  const navigate = useNavigate();
 
   const {
     data: {
@@ -26,11 +28,36 @@ export const CoursePage = () => {
     },
     isFetching,
     isError,
+    refetch,
   } = useCourseQuery(id);
+
+  const enrollToCourse = (id) => {
+    enrollCourse(id).then(refetch);
+  };
+
+  const unenrollFromCourse = (id) => {
+    unenrollCourse(id).then(refetch);
+  };
 
   return (
     <div className={styles.page}>
       <Container>
+        <Button variant="inverse" onClick={() => navigate(-1)}>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            strokeWidth={1.5}
+            stroke="currentColor"
+            className="w-6 h-6">
+            <path
+              strokeLinecap="round"
+              strokeLinejoin="round"
+              d="M10.5 19.5 3 12m0 0 7.5-7.5M3 12h18"
+            />
+          </svg>
+          Back
+        </Button>
         <Divider />
         {isFetching ? (
           <Loader className={styles.loader} variant={'dark'} />
@@ -61,11 +88,16 @@ export const CoursePage = () => {
               </ul>
               <div className={styles.footer}>
                 {!isEnrolled ? (
-                  <Button variant="gradient" onClick={() => enrollCourse(id)}>
-                    enroll in course
+                  <Button variant="gradient" onClick={() => enrollToCourse(id)}>
+                    Enroll in course
                   </Button>
                 ) : (
-                  <Button variant="gradient">{'to course >'}</Button>
+                  <div style={{ display: 'flex', gap: '10px' }}>
+                    <Button variant="gradient" onClick={() => unenrollFromCourse(id)}>
+                      Unenroll from course
+                    </Button>
+                    <Button variant="gradient">{'to course >'}</Button>
+                  </div>
                 )}
                 <span className={styles.author}>{instructor?.name}</span>
               </div>

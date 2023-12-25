@@ -9,9 +9,12 @@ import { Avatar } from '../../components/UI/Avatar';
 import { Loader } from '../../components/UI/Loader';
 import editIcon from '../../assets/icons/edit.svg';
 import styles from './AccountPage.module.scss';
+import { useNavigate } from 'react-router-dom';
 
 export const AccountPage = () => {
   const dispatch = useDispatch();
+
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(getProfile());
@@ -29,6 +32,8 @@ export const AccountPage = () => {
 
     reader.readAsDataURL(avatar);
   };
+
+  const toCourse = (id) => navigate(`${/enrolled-courses/}${id}`);
 
   return (
     <>
@@ -67,6 +72,7 @@ export const AccountPage = () => {
                   user?.enrolledCourses?.map((course) => (
                     <EnrolledCourseCard
                       key={course._id}
+                      onClick={() => toCourse(course._id)}
                       title={course.courseTitle}
                       progress={course.progress}
                     />

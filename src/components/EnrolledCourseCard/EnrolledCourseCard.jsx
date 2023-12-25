@@ -11,6 +11,7 @@ export const EnrolledCourseCard = ({
   category = 'Design',
   level = 'Beginner',
   description = 'Lorem ipsum sa ury jds kos de taus das, lorem ipsum sa ury jds kos de taus das, lorem ipsum sa ury jds kos de taus das, lorem ipsum sa ury jds kos de taus das',
+  onClick,
 }) => {
   return (
     <div className={styles.course}>
@@ -31,7 +32,9 @@ export const EnrolledCourseCard = ({
             marginTop: 'auto',
           }}>
           <div className={styles.accuracy}>Accuracy {accuracy}%</div>
-          <Button variant="gradient">{'to course >'}</Button>
+          <Button variant="gradient" onClick={onClick}>
+            {'to course >'}
+          </Button>
         </div>
       </div>
     </div>

@@ -114,9 +114,18 @@ export const updateProfile = async (profileData) => {
 
 export const enrollCourse = async (id) => {
   try {
-    await instanceAxios.post(`/courses/enroll?id=${id}`);
+    return instanceAxios.post(`/courses/enroll?id=${id}`);
   } catch (error) {
     console.error(`Enroll course error: ${error}`);
     throw new Error('Enroll course error');
+  }
+};
+
+export const unenrollCourse = async (id) => {
+  try {
+    return instanceAxios.post(`/courses/unenroll?id=${id}`);
+  } catch (error) {
+    console.error(`Unenroll course error: ${error}`);
+    throw new Error('Unenroll course error');
   }
 };

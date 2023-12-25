@@ -1,136 +1,116 @@
 * {
-	text-decoration: none;
+  text-decoration: none;
 }
 
 .button {
-	display: flex;
-	width: min-content;
-	align-items: center;
-	justify-content: center;
-	box-sizing: border-box;
-	background-color: inherit;
-	height: 40px;
-	border-radius: 100;
-	padding: 0 10px 0px 10px;
-	gap: 6px;
-	border-radius: var(--rad);
-	color: var(--colors-text-primary);
-	font-weight: var(--fw-sb);
-	font-size: var(--var-sm);
-	text-wrap: nowrap;
-	white-space: nowrap;
-	transition: all 0.1s ease-in-out;
-	user-select: none;
-	cursor: pointer;
+  display: flex;
+  width: min-content;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  background-color: inherit;
+  height: 40px;
+  border-radius: 100;
+  padding: 0 10px 0px 10px;
+  gap: 6px;
+  border-radius: var(--rad);
+  color: var(--colors-text-primary);
+  font-weight: var(--fw-sb);
+  font-size: var(--var-sm);
+  text-wrap: nowrap;
+  white-space: nowrap;
+  transition: all 0.1s ease-in-out;
+  user-select: none;
+  cursor: pointer;
 
-	:nth-child(n) {
-		width: 25px;
-		height: 25px;
-		text-decoration: none;
-	}
+  :nth-child(n) {
+    width: 20px;
+    height: 20px;
+    text-decoration: none;
+  }
 }
 
 .default {
-	color: var(--colors-text-secondary);
-	background-color: var(--colors-ui-base-primary);
-	box-shadow:
-		0px 0px 5px var(--colors-ui-shadow-primary) inset,
-		0px 0px 5px var(--colors-shadow);
-	border: 2px solid var(--colors-ui-base-primary);
+  color: var(--colors-text-secondary);
+  background-color: var(--colors-ui-base-primary);
+  box-shadow: 0px 0px 5px var(--colors-ui-shadow-primary) inset, 0px 0px 5px var(--colors-shadow);
+  border: 2px solid var(--colors-ui-base-primary);
 
-	:nth-child(n) {
-		fill: var(--colors-text-primary);
-	}
+  :nth-child(n) {
+    fill: var(--colors-text-primary);
+  }
 
-	&:hover {
-		box-shadow:
-			0px 0px 20px var(--colors-ui-shadow-primary) inset,
-			0px 0px 5px var(--colors-shadow);
-	}
+  &:hover {
+    box-shadow: 0px 0px 20px var(--colors-ui-shadow-primary) inset, 0px 0px 5px var(--colors-shadow);
+  }
 
-	&:active {
-		box-shadow:
-			0px 0px 1px var(--colors-ui-shadow-primary) inset,
-			0px 0px 15px var(--colors-shadow);
-	}
+  &:active {
+    box-shadow: 0px 0px 1px var(--colors-ui-shadow-primary) inset, 0px 0px 15px var(--colors-shadow);
+  }
 }
 
 .inverse {
-	color: var(--colors-text-primary);
-	background-color: var(--colors-ui-base-secondary);
-	box-shadow:
-		0px 0px 5px var(--colors-ui-shadow-secondary) inset,
-		0px 0px 5px var(--colors-shadow);
-	border: 2px solid var(--colors-ui-shadow-secondary);
+  color: var(--colors-text-primary);
+  background-color: var(--colors-ui-base-secondary);
+  box-shadow: 0px 0px 5px var(--colors-ui-shadow-secondary) inset, 0px 0px 5px var(--colors-shadow);
+  border: 2px solid var(--colors-ui-shadow-secondary);
 
-	:nth-child(n) {
-		fill: var(--colors-text-secondary);
-	}
+  :nth-child(n) {
+    fill: var(--colors-text-secondary);
+  }
 
-	&:hover {
-		box-shadow:
-			0px 0px 20px var(--colors-ui-shadow-secondary) inset,
-			0px 0px 5px var(--colors-shadow);
-	}
+  &:hover {
+    box-shadow: 0px 0px 20px var(--colors-ui-shadow-secondary) inset,
+      0px 0px 5px var(--colors-shadow);
+  }
 
-	&:active {
-		box-shadow:
-			0px 0px 1px var(--colors-ui-shadow-secondary) inset,
-			0px 0px 15px var(--colors-shadow);
-	}
+  &:active {
+    box-shadow: 0px 0px 1px var(--colors-ui-shadow-secondary) inset,
+      0px 0px 15px var(--colors-shadow);
+  }
 }
 
 .gradient {
-	color: var(--colors-text-secondary);
-	background: var(--colors-gradient-primary);
-	background-color: var(--colors-ui-base-primary);
-	box-shadow:
-		0px 0px 5px var(--colors-ui-shadow-primary) inset,
-		0px 0px 5px var(--colors-shadow);
-	border: 2px solid var(--colors-ui-base-primary);
-	background-size: 300% 300%;
-	animation: gradient 60s ease infinite;
+  color: var(--colors-text-secondary);
+  background: var(--colors-gradient-primary);
+  background-color: var(--colors-ui-base-primary);
+  box-shadow: 0px 0px 5px var(--colors-ui-shadow-primary) inset, 0px 0px 5px var(--colors-shadow);
+  border: 2px solid var(--colors-ui-base-primary);
+  background-size: 300% 300%;
+  animation: gradient 60s ease infinite;
 
-	:nth-child(n) {
-		fill: var(--colors-text-secondary);
-	}
+  :nth-child(n) {
+    fill: var(--colors-text-secondary);
+  }
 
-	&:hover {
-		box-shadow:
-			0px 0px 20px var(--colors-ui-shadow-primary) inset,
-			0px 0px 5px var(--colors-shadow);
-	}
+  &:hover {
+    box-shadow: 0px 0px 20px var(--colors-ui-shadow-primary) inset, 0px 0px 5px var(--colors-shadow);
+  }
 
-	&:active {
-		box-shadow:
-			0px 0px 1px var(--colors-ui-shadow-primary) inset,
-			0px 0px 15px var(--colors-shadow);
-	}
+  &:active {
+    box-shadow: 0px 0px 1px var(--colors-ui-shadow-primary) inset, 0px 0px 15px var(--colors-shadow);
+  }
 }
 
 .inactive {
-	cursor: default;
-	opacity: 0.5;
-	&:hover {
-		box-shadow:
-			0px 0px 5px var(--colors-ui-shadow-primary) inset,
-			0px 0px 5px var(--colors-shadow);
-	}
-	&:active {
-		box-shadow:
-			0px 0px 5px var(--colors-ui-shadow-primary) inset,
-			0px 0px 5px var(--colors-shadow);
-	}
+  cursor: default;
+  opacity: 0.5;
+  &:hover {
+    box-shadow: 0px 0px 5px var(--colors-ui-shadow-primary) inset, 0px 0px 5px var(--colors-shadow);
+  }
+  &:active {
+    box-shadow: 0px 0px 5px var(--colors-ui-shadow-primary) inset, 0px 0px 5px var(--colors-shadow);
+  }
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

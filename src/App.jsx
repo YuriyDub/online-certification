@@ -5,6 +5,7 @@ import { LogInPage } from './pages/LogInPage';
 import { SignUpPage } from './pages/SignUpPage';
 import { AccountPage } from './pages/AccountPage';
 import { CoursePage } from './pages/CoursePage';
+import { EnrolledCoursePage } from './pages/EnrolledCoursePage';
 import styles from './App.module.scss';
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
       <Routes>
         <Route index element={<HomePage />} />
         <Route path="/courses/:id" element={<CoursePage />} />
+        <Route path="/enrolled-courses/:id" element={<EnrolledCoursePage />} />
         <Route path="/login" element={<LogInPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/profile" element={<AccountPage />} />

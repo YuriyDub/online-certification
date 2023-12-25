@@ -1,146 +1,138 @@
 .card {
-	display: flex;
-	flex-direction: column;
-	box-sizing: border-box;
-	background-color: var(--colors-ui-base-primary);
-	box-shadow:
-		0px 0px 5px var(--colors-ui-shadow-primary) inset,
-		0px 0px 5px var(--colors-shadow);
-	border: 2px solid var(--colors-ui-base-primary);
-	border-radius: var(--rad-second);
-	position: relative;
-	overflow: hidden;
-	user-select: none;
-	padding: 5px;
-	transition: all 0.2s ease-in-out;
+  display: flex;
+  flex-direction: column;
+  box-sizing: border-box;
+  background-color: var(--colors-ui-base-primary);
+  box-shadow: 0px 0px 5px var(--colors-ui-shadow-primary) inset, 0px 0px 5px var(--colors-shadow);
+  border: 2px solid var(--colors-ui-base-primary);
+  border-radius: var(--rad-second);
+  position: relative;
+  overflow: hidden;
+  user-select: none;
+  padding: 5px;
+  transition: all 0.2s ease-in-out;
 
-	.top {
-		display: flex;
-		flex-direction: column;
-		overflow: hidden;
-		position: relative;
+  .top {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    position: relative;
 
-		img {
-			overflow: hidden;
-			width: 100%;
-			height: auto;
-			box-sizing: border-box;
-			border-radius: 10px 10px 0px 0px;
-			box-shadow: 0px 0px 5px var(--colors-shadow) inset;
-		}
+    img {
+      overflow: hidden;
+      width: 100%;
+      height: auto;
+      box-sizing: border-box;
+      border-radius: 10px 10px 0px 0px;
+      box-shadow: 0px 0px 5px var(--colors-shadow) inset;
+    }
 
-		.description {
-			position: absolute;
-			border-radius: 0px 0px 10px 10px;
-			top: -100px;
-			color: var(--colors-text);
-			border-bottom: 1px solid var(--colors-line);
-			border-left: 1px solid var(--colors-line);
-			border-right: 1px solid var(--colors-line);
-			backdrop-filter: blur(10px);
-			font-size: var(--fs-sm);
-			font-weight: var(--fw-md);
-			box-sizing: border-box;
-			padding: 10px;
-			margin: 0px 10px;
-			z-index: 1;
-			opacity: 0;
-			transition: 0.2s all ease-in-out;
+    .description {
+      position: absolute;
+      border-radius: 0px 0px 10px 10px;
+      top: -100px;
+      color: var(--colors-text);
+      background-color: rgba($color: #ffffff, $alpha: 0.3);
+      backdrop-filter: blur(10px);
+      font-size: var(--fs-sm);
+      font-weight: var(--fw-md);
+      box-sizing: border-box;
+      padding: 10px;
+      margin: 0px 10px;
+      z-index: 1;
+      opacity: 0;
+      transition: 0.2s all ease-in-out;
 
-			.addInfo {
-				display: flex;
-				gap: 5px;
-				margin-top: 10px;
-				bottom: 0;
-				z-index: 1;
+      .addInfo {
+        display: flex;
+        gap: 5px;
+        margin-top: 10px;
+        bottom: 0;
+        z-index: 1;
 
-				.level {
-					display: flex;
-					gap: 5px;
-					padding: 5px;
-					text-align: center;
-					align-items: center;
-					border-radius: var(--rad);
-					border: 1px solid var(--colors-line);
-					color: var(--colors-text-secondary);
-					font-size: var(--fs-lt);
-					background: var(--colors-gradient-primary);
-					background-size: 300% 300%;
-					text-wrap: nowrap;
-				}
+        .level {
+          display: flex;
+          gap: 5px;
+          padding: 5px;
+          text-align: center;
+          align-items: center;
+          border-radius: var(--rad);
+          color: var(--colors-text-secondary);
+          font-size: var(--fs-lt);
+          background: var(--colors-gradient-primary);
+          background-size: 300% 300%;
+          text-wrap: nowrap;
+        }
 
-				.duration {
-					display: flex;
-					gap: 5px;
-					padding: 5px;
-					text-align: center;
-					align-items: center;
-					border-radius: var(--rad);
-					border: 1px solid var(--colors-line);
-					color: var(--colors-text-primary);
-					font-size: var(--fs-lt);
-					background: var(--colors-primary);
-					text-wrap: nowrap;
+        .duration {
+          display: flex;
+          gap: 5px;
+          padding: 5px;
+          text-align: center;
+          align-items: center;
+          border-radius: var(--rad);
+          color: var(--colors-text-primary);
+          font-size: var(--fs-lt);
+          background: var(--colors-primary);
+          text-wrap: nowrap;
 
-					.icon {
-						height: 15px;
-						width: 15px;
-					}
-				}
-			}
-		}
-	}
+          .icon {
+            height: 15px;
+            width: 15px;
+          }
+        }
+      }
+    }
+  }
 
-	.info {
-		display: flex;
-		justify-content: space-between;
-		padding: 0px 10px 10px 10px;
-		user-select: none;
+  .info {
+    display: flex;
+    justify-content: space-between;
+    padding: 0px 10px 10px 10px;
+    user-select: none;
 
-		article {
-			display: flex;
-			flex-direction: column;
-			gap: 5px;
+    article {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
 
-			h2 {
-				color: var(--colors-text-secondary);
-				font-size: var(--fs-md);
-				font-weight: var(--fw-sb);
-			}
-			span {
-				color: var(--colors-text-secondary);
-				opacity: var(--opacity-lw);
-				font-size: var(--fs-sm);
-			}
-		}
-		.infoButton {
-			align-self: flex-end;
-		}
-	}
+      h2 {
+        color: var(--colors-text-secondary);
+        font-size: var(--fs-md);
+        font-weight: var(--fw-sb);
+      }
+      span {
+        color: var(--colors-text-secondary);
+        opacity: var(--opacity-lw);
+        font-size: var(--fs-sm);
+      }
+    }
+    .infoButton {
+      align-self: flex-end;
+    }
+  }
 
-	&:hover {
-		z-index: 1;
-		box-shadow:
-			0px 0px 5px var(--colors-ui-shadow-primary) inset,
-			0px 0px 30px var(--colors-shadow);
+  &:hover {
+    z-index: 1;
+    box-shadow: 0px 0px 5px var(--colors-ui-shadow-primary) inset, 0px 0px 30px var(--colors-shadow);
 
-		.top {
-			.description {
-				opacity: 1;
-				top: 0;
-			}
-		}
-	}
+    .top {
+      .description {
+        opacity: 1;
+        top: 0;
+      }
+    }
+  }
 }
 
 @keyframes gradient {
-	0% {
-		background-position: 0% 50%;
-	}
-	50% {
-		background-position: 100% 50%;
-	}
-	100% {
-		background-position: 0% 50%;
-	}
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
 }

@@ -89,12 +89,12 @@ export const CoursePage = () => {
               <div className={styles.footer}>
                 {!isEnrolled ? (
                   <Button variant="gradient" onClick={() => enrollToCourse(id)}>
-                    Enroll in course
+                    Enroll
                   </Button>
                 ) : (
                   <div style={{ display: 'flex', gap: '10px' }}>
                     <Button variant="gradient" onClick={() => unenrollFromCourse(id)}>
-                      Unenroll from course
+                      Unenroll
                     </Button>
                     <Button variant="gradient">{'to course >'}</Button>
                   </div>

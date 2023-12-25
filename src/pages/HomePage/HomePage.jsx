@@ -37,11 +37,10 @@ export const HomePage = () => {
   const dispatch = useDispatch();
 
   const navigate = useNavigate();
-  
+
   useEffect(() => {
     refetch();
   }, [category, page, searchLine, refetch]);
-
 
   const toCourse = (id) => navigate(`/courses/${id}`);
 
@@ -98,6 +97,7 @@ export const HomePage = () => {
                       duration={c.duration}
                       level={c.level}
                       onClick={() => toCourse(c._id)}
+                      img={c.image}
                     />
                   ))}
                 </section>

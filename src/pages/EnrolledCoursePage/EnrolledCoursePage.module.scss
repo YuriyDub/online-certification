@@ -110,6 +110,12 @@
 
 			.completed {
 				background-color: var(--colors-secondary);
+				cursor: not-allowed;
+
+				&:hover {
+					background-color: var(--colors-secondary);
+					box-shadow: none;
+				}
 			}
 		}
 	}

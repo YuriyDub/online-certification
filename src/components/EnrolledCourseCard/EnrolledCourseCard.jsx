@@ -5,6 +5,7 @@ import { Button } from '../UI/Button';
 
 export const EnrolledCourseCard = ({
   imgUrl = placeholder,
+  certificate,
   title = 'Professional React and Redux Tool Kit',
   progress = 0,
   accuracy = 100,
@@ -32,14 +33,27 @@ export const EnrolledCourseCard = ({
             alignItems: 'center',
             marginTop: 'auto',
           }}>
-          <div className={styles.accuracy}>{/* Accuracy {accuracy}% */}</div>
+          <div className={styles.accuracy}>Accuracy {accuracy}%</div>
           <div style={{ display: 'flex', gap: '5px' }}>
-            <Button variant="gradient" onClick={onDelete}>
-              Unenroll
-            </Button>
-            <Button variant="gradient" onClick={onClick}>
-              {'to course >'}
-            </Button>
+            {certificate ? (
+              <>
+                <Button variant="inverse" onClick={onDelete}>
+                  Unenroll
+                </Button>
+                <a href={certificate} rel="noreferrer" target="_blank">
+                  <Button variant="gradient">Certificate</Button>
+                </a>
+              </>
+            ) : (
+              <>
+                <Button variant="inverse" onClick={onDelete}>
+                  Unenroll
+                </Button>
+                <Button variant="gradient" onClick={onClick}>
+                  {'to course >'}
+                </Button>
+              </>
+            )}
           </div>
         </div>
       </div>

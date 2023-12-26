@@ -53,7 +53,9 @@ export const EnrolledCoursePage = () => {
                   return (
                     <li
                       className={`${styles.lesson} ${styles[isCompleted ? 'completed' : '']}`}
-                      onClick={() => toLesson(id, index)}>
+                      onClick={() => {
+                        if (!isCompleted) toLesson(id, index);
+                      }}>
                       <div className={styles.materials}>
                         <div className={styles.description}>
                           <h2>{l.title}</h2>

@@ -73,19 +73,20 @@ export const AccountPage = () => {
               </h2>
               <Divider />
               <div className={styles.courses}>
-                {user.enrolledCourses ? (
+                {user?.enrolledCourses ? (
                   user?.enrolledCourses?.map((course) => (
                     <EnrolledCourseCard
                       key={course.courseId}
                       onDelete={() => unenrollFromCourse(course.courseId)}
                       onClick={() => toCourse(course.courseId)}
-                      title={course.title}
-                      description={course.description}
-                      imgUrl={course.image}
-                      progress={course.progress}
-                      accuracy={course.accuracy}
-                      category={course.category}
-                      level={course.level}
+                      title={course?.title}
+                      description={course?.description}
+                      imgUrl={course?.image}
+                      progress={course?.progress}
+                      accuracy={course?.accuracy}
+                      category={course?.category}
+                      level={course?.level}
+                      certificate={course?.certificate}
                     />
                   ))
                 ) : (

@@ -96,7 +96,9 @@ export const CoursePage = () => {
                     <Button variant="gradient" onClick={() => unenrollFromCourse(id)}>
                       Unenroll
                     </Button>
-                    <Button variant="gradient">{'to course >'}</Button>
+                    <Button variant="gradient" onClick={() => navigate(`/enrolled-courses/${id}`)}>
+                      {'to course >'}
+                    </Button>
                   </div>
                 )}
                 <span className={styles.author}>{instructor?.name}</span>

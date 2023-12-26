@@ -1,0 +1,46 @@
+.page {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	margin-top: 110px;
+
+	.body {
+		.video {
+			aspect-ratio: 16 / 9;
+		}
+
+		form {
+			margin-bottom: 100px;
+
+			h1 {
+				font-weight: var(--fw-b);
+				font-size: var(--fs-bg);
+				margin: 10px 0;
+			}
+
+			.question {
+				margin-bottom: 20px;
+
+				p {
+					font-size: var(--fs-md);
+					margin-bottom: 10px;
+				}
+				span {
+					display: block;
+					color: var(--colors-incorrect);
+					margin-bottom: 10px;
+					margin-left: 20px;
+				}
+
+				input {
+					margin: 0px 10px 8px 20px;
+				}
+
+				label {
+					font-style: italic;
+				}
+			}
+		}
+	}
+}

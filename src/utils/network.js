@@ -53,6 +53,12 @@ export const fetchCourses = async (page, category, searchLine) => {
 export const fetchCourse = async (id) =>
   instanceAxios.get(COURSES_CARDS_URL + `/id/${id}`).then((res) => res.data);
 
+export const fetchLessons = async (id) =>
+  instanceAxios.get(`/profile/courses/${id}/lessons`).then((res) => res.data);
+
+export const fetchLesson = async (courseId, id) =>
+  instanceAxios.get(`/profile/courses/${courseId}/lesson/${id}`).then((res) => res.data);
+
 export const signIn = async (username, password) => {
   try {
     const response = await instanceAxios.post('/signin', { username, password });
@@ -127,5 +133,19 @@ export const unenrollCourse = async (id) => {
   } catch (error) {
     console.error(`Unenroll course error: ${error}`);
     throw new Error('Unenroll course error');
+  }
+};
+
+export const submitTest = async (courseId, lessonId, answers) => {
+  try {
+    return instanceAxios
+      .post(`/profile/courses/${courseId}/lesson/${lessonId}/test/0`, answers)
+      .then((res) => {
+        if (res) {
+          return res?.data;
+        } else alert('Test is already completed');
+      });
+  } catch (error) {
+    console.error(`Submit test error: ${error}`);
   }
 };

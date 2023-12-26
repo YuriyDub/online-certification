@@ -10,6 +10,7 @@ import { Loader } from '../../components/UI/Loader';
 import editIcon from '../../assets/icons/edit.svg';
 import styles from './AccountPage.module.scss';
 import { useNavigate } from 'react-router-dom';
+import { unenrollCourse } from '../../utils/network';
 
 export const AccountPage = () => {
   const dispatch = useDispatch();
@@ -33,7 +34,11 @@ export const AccountPage = () => {
     reader.readAsDataURL(avatar);
   };
 
-  const toCourse = (id) => navigate(`${/enrolled-courses/}${id}`);
+  const toCourse = (id) => navigate(`/enrolled-courses/${id}`);
+
+  const unenrollFromCourse = (id) => {
+    unenrollCourse(id).then(dispatch(getProfile()));
+  };
 
   return (
     <>
@@ -71,10 +76,16 @@ export const AccountPage = () => {
                 {user.enrolledCourses ? (
                   user?.enrolledCourses?.map((course) => (
                     <EnrolledCourseCard
-                      key={course._id}
-                      onClick={() => toCourse(course._id)}
-                      title={course.courseTitle}
+                      key={course.courseId}
+                      onDelete={() => unenrollFromCourse(course.courseId)}
+                      onClick={() => toCourse(course.courseId)}
+                      title={course.title}
+                      description={course.description}
+                      imgUrl={course.image}
                       progress={course.progress}
+                      accuracy={course.accuracy}
+                      category={course.category}
+                      level={course.level}
                     />
                   ))
                 ) : (

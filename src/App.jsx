@@ -7,6 +7,7 @@ import { AccountPage } from './pages/AccountPage';
 import { CoursePage } from './pages/CoursePage';
 import { EnrolledCoursePage } from './pages/EnrolledCoursePage';
 import styles from './App.module.scss';
+import { LessonPage } from './pages/LessonPage';
 
 const App = () => {
   return (
@@ -16,6 +17,7 @@ const App = () => {
         <Route index element={<HomePage />} />
         <Route path="/courses/:id" element={<CoursePage />} />
         <Route path="/enrolled-courses/:id" element={<EnrolledCoursePage />} />
+        <Route path="/enrolled-courses/:courseId/lesson/:id" element={<LessonPage />} />
         <Route path="/login" element={<LogInPage />} />
         <Route path="/signup" element={<SignUpPage />} />
         <Route path="/profile" element={<AccountPage />} />

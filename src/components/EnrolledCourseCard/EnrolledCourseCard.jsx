@@ -12,6 +12,7 @@ export const EnrolledCourseCard = ({
   level = 'Beginner',
   description = 'Lorem ipsum sa ury jds kos de taus das, lorem ipsum sa ury jds kos de taus das, lorem ipsum sa ury jds kos de taus das, lorem ipsum sa ury jds kos de taus das',
   onClick,
+  onDelete,
 }) => {
   return (
     <div className={styles.course}>
@@ -31,10 +32,15 @@ export const EnrolledCourseCard = ({
             alignItems: 'center',
             marginTop: 'auto',
           }}>
-          <div className={styles.accuracy}>Accuracy {accuracy}%</div>
-          <Button variant="gradient" onClick={onClick}>
-            {'to course >'}
-          </Button>
+          <div className={styles.accuracy}>{/* Accuracy {accuracy}% */}</div>
+          <div style={{ display: 'flex', gap: '5px' }}>
+            <Button variant="gradient" onClick={onDelete}>
+              Unenroll
+            </Button>
+            <Button variant="gradient" onClick={onClick}>
+              {'to course >'}
+            </Button>
+          </div>
         </div>
       </div>
     </div>

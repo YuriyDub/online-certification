@@ -1,7 +1,134 @@
 .page {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  width: 100%;
-  margin-top: 150px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	width: 100%;
+	margin-top: 110px;
+
+	.loader {
+		margin: 200px 0;
+	}
+
+	.details {
+		display: flex;
+		flex-direction: column;
+		justify-content: flex-start;
+		gap: 5px;
+		margin: 20px;
+
+		.title {
+			font-size: var(--fs-bg);
+			font-weight: var(--fw-b);
+			text-transform: uppercase;
+		}
+
+		.description {
+			margin-top: 5px;
+			font-size: var(--fs-sm);
+			font-weight: var(--fw-md);
+			text-transform: lowercase;
+		}
+
+		.chips {
+			overflow: auto;
+			display: flex;
+			margin-top: 5px;
+			gap: 4px;
+			.chip {
+				user-select: none;
+				text-wrap: nowrap;
+				font-size: var(--fs-lt);
+				padding: 8px;
+				background-color: var(--colors-secondary);
+				border-radius: var(--rad);
+			}
+		}
+
+		.lessons {
+			display: flex;
+			margin: 0 5px;
+			margin-top: 10px;
+			margin-bottom: auto;
+			flex-direction: column;
+			overflow: auto;
+			padding: 15px;
+			gap: 10px;
+
+			.lesson {
+				display: flex;
+				flex-direction: column;
+				box-sizing: border-box;
+				border-bottom: 1px solid var(--colors-line);
+				padding: 5px 10px;
+				background-color: var(--colors-ui-base-primary);
+				background-size: 300% 300%;
+				user-select: none;
+				transition: all 0.1s ease-in-out;
+				cursor: pointer;
+
+				.materials {
+					display: flex;
+					align-items: center;
+					justify-content: space-between;
+
+					.description {
+						color: var(--colors-text-primary);
+						h2 {
+							font-weight: var(--fw-b);
+						}
+						p {
+							font-size: var(--fs-lt);
+						}
+					}
+					.duration {
+						text-wrap: nowrap;
+						color: var(--colors-text-primary);
+						font-size: var(--fs-lt);
+					}
+					.result {
+						text-wrap: nowrap;
+						color: var(--colors-text-primary);
+						font-size: var(--fs-lt);
+					}
+				}
+
+				.test {
+					h2 {
+						font-weight: var(--fw-b);
+					}
+				}
+
+				&:hover {
+					background-color: var(--colors-primary);
+					box-shadow: 0px 5px 10px 1px var(--colors-shadow);
+				}
+
+				&:active {
+					background-color: var(--colors-secondary);
+				}
+			}
+
+			.completed {
+				background-color: var(--colors-secondary);
+			}
+		}
+	}
+}
+
+@media (max-width: 1280px) {
+}
+
+@media (max-width: 900px) {
+}
+
+@keyframes gradient {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
 }

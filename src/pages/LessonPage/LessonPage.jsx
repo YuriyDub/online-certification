@@ -3,12 +3,11 @@ import { Container } from '../../components/UI/Container';
 import { Loader } from '../../components/UI/Loader';
 import { Divider } from '../../components/UI/Divider';
 import { Controller, useForm } from 'react-hook-form';
+import { submitTest } from '../../utils/network';
+import { Button } from '../../components/UI/Button';
 import YouTube from 'react-youtube';
 import useLessonQuery from '../../hooks/useLessonQuery';
 import styles from './LessonPage.module.scss';
-import { Button } from '../../components/UI/Button';
-import { submitTest } from '../../utils/network';
-import { useMemo, useState } from 'react';
 
 export const LessonPage = () => {
   const { courseId, id } = useParams();
@@ -16,7 +15,11 @@ export const LessonPage = () => {
   const navigate = useNavigate();
 
   const {
-    data: { material, nextLesson, tests },
+    data: {
+      material,
+      // nextLesson,
+      tests,
+    },
     isFetching,
     isError,
   } = useLessonQuery(courseId, id);
@@ -40,7 +43,7 @@ export const LessonPage = () => {
     height: '100%',
     width: '100%',
     videoId: material?.match(
-      /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?\/\s]{11})/,
+      /(?:youtube\.com\/(?:[^/]+\/.+\/|(?:v|e(?:mbed)?)\/|.*[?&]v=)|youtu\.be\/)([^"&?/\s]{11})/,
     )[1],
   };
 
@@ -79,9 +82,7 @@ export const LessonPage = () => {
                 }}
                 className={styles.video}
               />
-            ) : (
-              null
-            )}
+            ) : null}
             {tests.map((t, index) => (
               <form onSubmit={handleSubmit(onSubmit)} key={index}>
                 <h1>{t.title}</h1>
